@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.mixdedrink.databinding.FragmentFirstBinding;
+import com.example.mixdedrink.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private FragmentSearchBinding binding;
 
     @Override
     public View onCreateView(
@@ -21,7 +21,7 @@ public class SearchFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
