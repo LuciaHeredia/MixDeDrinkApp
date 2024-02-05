@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 import com.example.mixdedrink.databinding.FragmentSearchBinding;
@@ -28,6 +29,9 @@ public class SearchFragment extends Fragment {
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // hide Toolbar when entering fragment
+                ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+
                 NavHostFragment.findNavController(SearchFragment.this)
                         .navigate(R.id.action_SearchFragment_to_RecipeFragment);
             }
