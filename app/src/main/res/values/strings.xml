@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">MixDeDrink</string>
-    <string name="action_favorites">Favorites</string>
-    <string name="action_help">Help</string>
-    <string name="action_about">About</string>
 
     <!-- Search Fragment -->
     <string name="search_fragment_label">Search</string>
@@ -16,9 +13,17 @@
     <!-- Favorites Fragment -->
     <string name="favorites_fragment_label">Favorites</string>
     <string name="hello_favorites_fragment">Hello Favorites fragment</string>
+    <string name="action_favorites">Favorites</string>
 
     <!-- About Fragment -->
     <string name="about_fragment_label">About</string>
     <string name="hello_about_fragment">Hello About fragment</string>
+    <string name="action_about">About</string>
+
+    <!-- Help Fragment -->
+    <string name="help_fragment_label">Help</string>
+    <string name="hello_help_fragment">Hello Help fragment</string>
+    <string name="action_help">Help</string>
+
 
 </resources>

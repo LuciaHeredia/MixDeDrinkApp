@@ -37,5 +37,11 @@
         android:label="@string/about_fragment_label"
         tools:layout="@layout/fragment_about">
     </fragment>
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="com.example.mixdedrink.HelpFragment"
+        android:label="@string/help_fragment_label"
+        tools:layout="@layout/fragment_help">
+    </fragment>
 
 </navigation>

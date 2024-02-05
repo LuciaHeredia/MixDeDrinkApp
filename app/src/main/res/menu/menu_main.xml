@@ -17,8 +17,9 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_help"
+        android:id="@+id/helpFragment"
         android:title="@string/action_help"
+        android:menuCategory="secondary"
         app:showAsAction="never" />
 
     <item
