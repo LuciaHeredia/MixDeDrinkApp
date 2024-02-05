@@ -31,5 +31,11 @@
         android:label="@string/favorites_fragment_label"
         tools:layout="@layout/fragment_favorites">
     </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.mixdedrink.AboutFragment"
+        android:label="@string/about_fragment_label"
+        tools:layout="@layout/fragment_about">
+    </fragment>
 
 </navigation>

@@ -17,4 +17,8 @@
     <string name="favorites_fragment_label">Favorites</string>
     <string name="hello_favorites_fragment">Hello Favorites fragment</string>
 
+    <!-- About Fragment -->
+    <string name="about_fragment_label">About</string>
+    <string name="hello_about_fragment">Hello About fragment</string>
+
 </resources>
