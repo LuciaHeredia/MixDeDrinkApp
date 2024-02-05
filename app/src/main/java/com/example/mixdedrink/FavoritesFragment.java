@@ -6,11 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import com.example.mixdedrink.databinding.FragmentRecipeBinding;
 
-public class RecipeFragment extends Fragment {
 
-    private FragmentRecipeBinding binding;
+import com.example.mixdedrink.databinding.FragmentFavoritesBinding;
+
+public class FavoritesFragment extends Fragment {
+    private FragmentFavoritesBinding binding;
 
     @Override
     public View onCreateView(
@@ -18,14 +19,12 @@ public class RecipeFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentRecipeBinding.inflate(inflater, container, false);
+        binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
 
     }
 

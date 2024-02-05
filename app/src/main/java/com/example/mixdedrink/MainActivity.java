@@ -11,10 +11,9 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.mixdedrink.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
+    private NavController navController;
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         // nav graph setup
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         // upper bar setup
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -55,26 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        if (id == R.id.action_favorites_act)
-            Toast.makeText(this, "Favorites ADD/REMOVE", Toast.LENGTH_SHORT).show();
-        else if(id == R.id.action_favorites)
-            Toast.makeText(this, "Favorites", Toast.LENGTH_SHORT).show();
-        else if(id == R.id.action_help)
-            Toast.makeText(this, "Help", Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(this, "About", Toast.LENGTH_SHORT).show();
-
-        return super.onOptionsItemSelected(item);
+        return NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item);
     }
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
     }

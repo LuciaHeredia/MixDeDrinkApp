@@ -5,13 +5,16 @@
     <string name="action_about">About</string>
 
     <!-- Search Fragment -->
-    <string name="search_fragment_label">Search Fragment</string>
-    <string name="hello_first_fragment">Hello Search fragment</string>
-    <string name="previous">Previous</string>
-
-    <!-- Other Fragment -->
-    <string name="recipe_fragment_label">Recipe Fragment</string>
-    <string name="hello_second_fragment">Hello Recipe fragment. Arg: %1$s</string>
+    <string name="search_fragment_label">Search</string>
+    <string name="hello_search_fragment">Hello Search fragment</string>
     <string name="next">Next</string>
+
+    <!-- Recipe Fragment -->
+    <string name="recipe_fragment_label">Recipe</string>
+    <string name="hello_recipe_fragment">Hello Recipe fragment</string>
+
+    <!-- Favorites Fragment -->
+    <string name="favorites_fragment_label">Favorites</string>
+    <string name="hello_favorites_fragment">Hello Favorites fragment</string>
 
 </resources>
