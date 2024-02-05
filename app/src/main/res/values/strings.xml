@@ -4,6 +4,7 @@
     <!-- Search Fragment -->
     <string name="search_fragment_label">Search</string>
     <string name="hello_search_fragment">Hello Search fragment</string>
+    <string name="action_search">Search</string>
     <string name="next">Next</string>
 
     <!-- Recipe Fragment -->

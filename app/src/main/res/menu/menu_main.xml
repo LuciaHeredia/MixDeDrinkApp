@@ -4,9 +4,10 @@
     tools:context="com.example.mixdedrink.MainActivity">
 
     <item
-        android:id="@+id/action_favorites_act"
-        android:title="@string/action_favorites"
-        android:icon="@drawable/ic_favorites_add"
+        android:id="@+id/searchFragment"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_search"
+        android:menuCategory="secondary"
         app:showAsAction="ifRoom" />
 
     <item
