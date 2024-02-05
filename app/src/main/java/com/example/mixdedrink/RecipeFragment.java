@@ -33,7 +33,7 @@ public class RecipeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(RecipeFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
+                        .navigate(R.id.action_RecipeFragment_to_SearchFragment);
             }
         });
     }
