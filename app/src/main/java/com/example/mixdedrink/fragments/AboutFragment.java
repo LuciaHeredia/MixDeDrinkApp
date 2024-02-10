@@ -1,4 +1,4 @@
-package com.example.mixdedrink;
+package com.example.mixdedrink.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.mixdedrink.databinding.FragmentHelpBinding;
+import com.example.mixdedrink.databinding.FragmentAboutBinding;
 
-public class HelpFragment extends Fragment {
-    private FragmentHelpBinding binding;
+public class AboutFragment extends Fragment {
+    private FragmentAboutBinding binding;
 
     @Override
     public View onCreateView(
@@ -19,7 +19,7 @@ public class HelpFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentHelpBinding.inflate(inflater, container, false);
+        binding = FragmentAboutBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

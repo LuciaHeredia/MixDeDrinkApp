@@ -1,4 +1,4 @@
-package com.example.mixdedrink;
+package com.example.mixdedrink.helpers;
 
 public class Constants {
     //public static final String FIRST_NAME = "Tar";

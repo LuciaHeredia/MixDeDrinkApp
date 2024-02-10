@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/searchFragment"
-    tools:context=".SearchFragment">
+    tools:context=".fragments.SearchFragment">
 
     <LinearLayout
         android:id="@+id/ll_search"

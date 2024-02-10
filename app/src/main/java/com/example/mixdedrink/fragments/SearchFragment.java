@@ -1,4 +1,4 @@
-package com.example.mixdedrink;
+package com.example.mixdedrink.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+
+import com.example.mixdedrink.R;
 import com.example.mixdedrink.databinding.FragmentSearchBinding;
 
 public class SearchFragment extends Fragment {
@@ -41,7 +43,7 @@ public class SearchFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        /*binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // hide Toolbar when entering fragment
@@ -50,7 +52,7 @@ public class SearchFragment extends Fragment {
                 NavHostFragment.findNavController(SearchFragment.this)
                         .navigate(R.id.action_SearchFragment_to_RecipeFragment);
             }
-        });
+        });*/
     }
 
     @Override
