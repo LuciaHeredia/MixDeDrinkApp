@@ -1,4 +1,4 @@
-package com.example.mixdedrink.fragments;
+package com.example.mixdedrink.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

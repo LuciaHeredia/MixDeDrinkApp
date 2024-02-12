@@ -1,11 +1,9 @@
-package com.example.mixdedrink.activities;
+package com.example.mixdedrink.ui.activities;
 
 import android.os.Bundle;
 
 import com.example.mixdedrink.R;
-import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
-import android.view.View;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -34,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         // upper bar setup
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
     }
 
     @Override

@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.mixdedrink.fragments.SearchFragment"
+        android:name="com.example.mixdedrink.ui.fragments.SearchFragment"
         android:label="@string/search_fragment_label"
         tools:layout="@layout/fragment_search">
 
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
-        android:name="com.example.mixdedrink.fragments.RecipeFragment"
+        android:name="com.example.mixdedrink.ui.fragments.RecipeFragment"
         android:label="@string/recipe_fragment_label"
         tools:layout="@layout/fragment_recipe">
 
@@ -28,19 +28,19 @@
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.example.mixdedrink.fragments.FavoritesFragment"
+        android:name="com.example.mixdedrink.ui.fragments.FavoritesFragment"
         android:label="@string/favorites_fragment_label"
         tools:layout="@layout/fragment_favorites">
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
-        android:name="com.example.mixdedrink.fragments.AboutFragment"
+        android:name="com.example.mixdedrink.ui.fragments.AboutFragment"
         android:label="@string/about_fragment_label"
         tools:layout="@layout/fragment_about">
     </fragment>
     <fragment
         android:id="@+id/helpFragment"
-        android:name="com.example.mixdedrink.fragments.HelpFragment"
+        android:name="com.example.mixdedrink.ui.fragments.HelpFragment"
         android:label="@string/help_fragment_label"
         tools:layout="@layout/fragment_help">
     </fragment>

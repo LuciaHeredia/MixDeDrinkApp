@@ -1,17 +1,17 @@
-package com.example.mixdedrink.fragments;
+package com.example.mixdedrink.ui.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.mixdedrink.databinding.FragmentHelpBinding;
 
-import com.example.mixdedrink.databinding.FragmentFavoritesBinding;
-
-public class FavoritesFragment extends Fragment {
-    private FragmentFavoritesBinding binding;
+public class HelpFragment extends Fragment {
+    private FragmentHelpBinding binding;
 
     @Override
     public View onCreateView(
@@ -19,7 +19,7 @@ public class FavoritesFragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFavoritesBinding.inflate(inflater, container, false);
+        binding = FragmentHelpBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
