@@ -1,4 +1,4 @@
-package com.example.mixdedrink.data.repositories.remote.request;
+package com.example.mixdedrink.data.remote.request;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;

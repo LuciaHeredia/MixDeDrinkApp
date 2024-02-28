@@ -1,9 +1,9 @@
-package com.example.mixdedrink.data.repositories;
+package com.example.mixdedrink.data.remote.repositories;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.mixdedrink.data.modelsDto.CocktailDto;
-import com.example.mixdedrink.data.repositories.remote.request.CocktailApiClient;
+import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.request.CocktailApiClient;
 
 import java.util.List;
 

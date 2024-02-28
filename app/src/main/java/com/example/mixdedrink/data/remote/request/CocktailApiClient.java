@@ -1,12 +1,12 @@
-package com.example.mixdedrink.data.repositories.remote.request;
+package com.example.mixdedrink.data.remote.request;
 
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mixdedrink.data.modelsDto.CocktailDto;
-import com.example.mixdedrink.data.repositories.remote.respnose.CocktailSearch;
+import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.response.CocktailSearch;
 import com.example.mixdedrink.utils.Constants;
 
 import java.io.IOException;

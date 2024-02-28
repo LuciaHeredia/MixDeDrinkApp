@@ -1,6 +1,6 @@
-package com.example.mixdedrink.data.repositories.remote.request;
+package com.example.mixdedrink.data.remote.request;
 
-import com.example.mixdedrink.data.repositories.remote.Api;
+import com.example.mixdedrink.data.remote.Api;
 import com.example.mixdedrink.utils.Constants;
 
 import retrofit2.Retrofit;

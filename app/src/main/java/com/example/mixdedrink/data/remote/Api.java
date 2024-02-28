@@ -1,6 +1,6 @@
-package com.example.mixdedrink.data.repositories.remote;
+package com.example.mixdedrink.data.remote;
 
-import com.example.mixdedrink.data.repositories.remote.respnose.CocktailSearch;
+import com.example.mixdedrink.data.remote.response.CocktailSearch;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

@@ -1,6 +1,6 @@
-package com.example.mixdedrink.data.repositories.remote.respnose;
+package com.example.mixdedrink.data.remote.response;
 
-import com.example.mixdedrink.data.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

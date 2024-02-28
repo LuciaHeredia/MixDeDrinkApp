@@ -2,8 +2,8 @@ package com.example.mixdedrink.presentation;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.mixdedrink.data.modelsDto.CocktailDto;
-import com.example.mixdedrink.data.repositories.CocktailRepository;
+import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.repositories.CocktailRepository;
 
 import java.util.List;
 

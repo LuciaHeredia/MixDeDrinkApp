@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.mixdedrink.data.modelsDto.CocktailDto;
-import com.example.mixdedrink.data.repositories.remote.Api;
-import com.example.mixdedrink.data.repositories.remote.request.ServiceRequest;
-import com.example.mixdedrink.data.repositories.remote.respnose.CocktailSearch;
+import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.Api;
+import com.example.mixdedrink.data.remote.request.ServiceRequest;
+import com.example.mixdedrink.data.remote.response.CocktailSearch;
 import com.example.mixdedrink.databinding.FragmentSearchBinding;
 import com.example.mixdedrink.presentation.CocktailListViewModel;
 import com.example.mixdedrink.utils.Constants;
