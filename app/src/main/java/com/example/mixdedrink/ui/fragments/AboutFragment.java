@@ -15,9 +15,8 @@ public class AboutFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            @NonNull LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
 
         binding = FragmentAboutBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -25,7 +24,6 @@ public class AboutFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
     }
 
     @Override
