@@ -6,6 +6,10 @@
     <string name="hello_search_fragment">Hello Search fragment</string>
     <string name="action_search">Search</string>
     <string name="next">Next</string>
+    <string name="desc_search">search</string>
+    <string name="desc_clear">clear</string>
+    <string name="desc_random">random</string>
+    <string name="search_by_hint">Search By:</string>
 
     <!-- Recipe Fragment -->
     <string name="recipe_fragment_label">Recipe</string>
@@ -25,6 +29,5 @@
     <string name="help_fragment_label">Help</string>
     <string name="hello_help_fragment">Hello Help fragment</string>
     <string name="action_help">Help</string>
-
 
 </resources>
