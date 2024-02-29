@@ -5,8 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -22,6 +24,7 @@ import com.example.mixdedrink.databinding.FragmentSearchBinding;
 import com.example.mixdedrink.presentation.CocktailListViewModel;
 import com.example.mixdedrink.utils.CocktailAdapter;
 import com.example.mixdedrink.utils.Constants;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,10 +51,15 @@ public class SearchFragment extends Fragment {
             Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
+        dropDownSetUp();
         recyclerViewSetup();
         GetRetrofitResponse();
         listenerSetup();
         return binding.getRoot();
+    }
+
+    private void dropDownSetUp() {
+
     }
 
     private void disableOnBackBtn() {
@@ -89,6 +97,26 @@ public class SearchFragment extends Fragment {
                         .navigate(R.id.action_SearchFragment_to_RecipeFragment);
             }
         });*/
+
+        /* Search View */
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
+        /* Floating Icon - Random Cocktail */
+        binding.randomCocktail.setOnClickListener(view -> {
+            Snackbar.make(view, "Get Random Cocktail", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        });
+
     }
 
     private void GetRetrofitResponse() {
