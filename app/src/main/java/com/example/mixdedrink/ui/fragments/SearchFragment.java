@@ -5,11 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
 import com.example.mixdedrink.data.remote.Api;
@@ -17,6 +20,7 @@ import com.example.mixdedrink.data.remote.request.ServiceRequest;
 import com.example.mixdedrink.data.remote.response.CocktailSearch;
 import com.example.mixdedrink.databinding.FragmentSearchBinding;
 import com.example.mixdedrink.presentation.CocktailListViewModel;
+import com.example.mixdedrink.utils.CocktailAdapter;
 import com.example.mixdedrink.utils.Constants;
 
 import java.util.ArrayList;
@@ -28,9 +32,8 @@ import retrofit2.Response;
 
 public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
-
-    // ViewModel
     private CocktailListViewModel cocktailListViewModel;
+    private CocktailAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -55,8 +58,26 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
 
         cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
-
+        recyclerViewSetup();
+        GetRetrofitResponse();
+        listenerSetup();
         return binding.getRoot();
+    }
+
+    private void recyclerViewSetup() {
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setHasFixedSize(true);
+        adapter = new CocktailAdapter();
+        binding.recyclerView.setAdapter(adapter);
+        adapter.setOnItemClickListener(this::saveContactToSharedPref);
+    }
+
+    private void saveContactToSharedPref(CocktailDto cocktail) {
+        Toast.makeText(getActivity(), "hereee", Toast.LENGTH_SHORT).show();
+    }
+
+    private void listenerSetup() {
+        //binding.buttonFirst.setOnClickListener(view -> GetRetrofitResponse());
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -73,13 +94,6 @@ public class SearchFragment extends Fragment {
             }
         });*/
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GetRetrofitResponse();
-            }
-        });
-
     }
 
     private void GetRetrofitResponse() {
@@ -95,9 +109,9 @@ public class SearchFragment extends Fragment {
                 if(response.code() == 200) {
                     Log.v("Tag", "response: " + response.body().toString());
                     List<CocktailDto> cocktailDtoList = new ArrayList<>(response.body().getCocktailDtoList());
-                    for(CocktailDto cocktailDto: cocktailDtoList) {
-                        Log.v("Tag", "The Glass: " + cocktailDto.getStrDrink());
-                    }
+                    adapter.setCocktails(cocktailDtoList);
+                    binding.recyclerView.setVisibility(View.VISIBLE);
+                    binding.progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     try {
                         Log.v("Tag", "Error: " + response.errorBody().string());
