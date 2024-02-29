@@ -5,16 +5,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.R;
+import com.example.mixdedrink.data.remote.dtos.CocktailDto;
 import com.example.mixdedrink.data.remote.Api;
 import com.example.mixdedrink.data.remote.request.ServiceRequest;
 import com.example.mixdedrink.data.remote.response.CocktailSearch;
@@ -39,7 +39,22 @@ public class SearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        // Disable onBack btn pressed
+        disableOnBackBtn();
+    }
+
+    @Override
+    public View onCreateView(
+            LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+        binding = FragmentSearchBinding.inflate(inflater, container, false);
+        cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
+        recyclerViewSetup();
+        GetRetrofitResponse();
+        listenerSetup();
+        return binding.getRoot();
+    }
+
+    private void disableOnBackBtn() {
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
@@ -49,39 +64,20 @@ public class SearchFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
-    @Override
-    public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
-
-        binding = FragmentSearchBinding.inflate(inflater, container, false);
-
-        cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
-        recyclerViewSetup();
-        GetRetrofitResponse();
-        listenerSetup();
-        return binding.getRoot();
-    }
-
     private void recyclerViewSetup() {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setHasFixedSize(true);
         adapter = new CocktailAdapter();
         binding.recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(this::saveContactToSharedPref);
+        adapter.setOnItemClickListener(this::saveRecipeToSharedPref);
     }
 
-    private void saveContactToSharedPref(CocktailDto cocktail) {
-        Toast.makeText(getActivity(), "hereee", Toast.LENGTH_SHORT).show();
+    private void saveRecipeToSharedPref(CocktailDto cocktail) {
+        goToRecipe();
     }
 
     private void listenerSetup() {
         //binding.buttonFirst.setOnClickListener(view -> GetRetrofitResponse());
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
         /*binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,7 +89,6 @@ public class SearchFragment extends Fragment {
                         .navigate(R.id.action_SearchFragment_to_RecipeFragment);
             }
         });*/
-
     }
 
     private void GetRetrofitResponse() {
@@ -131,10 +126,15 @@ public class SearchFragment extends Fragment {
     private void ObserveAnyChange() {
         cocktailListViewModel.getCocktails().observe(this, new Observer<List<CocktailDto>>() {
             @Override
-            public void onChanged(List<CocktailDto> cocktailDtos) {
+            public void onChanged(List<CocktailDto> cocktails) {
                 // observing for changes
             }
         });
+    }
+
+    private void goToRecipe() {
+        NavHostFragment.findNavController(SearchFragment.this)
+                .navigate(R.id.action_SearchFragment_to_RecipeFragment);
     }
 
     @Override

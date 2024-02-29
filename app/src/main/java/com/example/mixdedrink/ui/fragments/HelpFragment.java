@@ -15,9 +15,8 @@ public class HelpFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            @NonNull LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
 
         binding = FragmentHelpBinding.inflate(inflater, container, false);
         return binding.getRoot();

@@ -9,15 +9,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ServiceRequest {
 
     // Service Generator
-    private static Retrofit.Builder retrofitBuilder =
+    private static final Retrofit.Builder retrofitBuilder =
             new Retrofit.Builder()
                     .baseUrl(Constants.BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create());
 
     // Singleton Retrofit
-    private static Retrofit retrofit = retrofitBuilder.build();
+    private static final Retrofit retrofit = retrofitBuilder.build();
 
-    private static Api api = retrofit.create(Api.class);
+    private static final Api api = retrofit.create(Api.class);
 
     public static Api getApi() {
         return api;

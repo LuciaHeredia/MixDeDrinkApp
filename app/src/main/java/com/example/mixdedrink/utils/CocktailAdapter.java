@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mixdedrink.R;
-import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.dtos.CocktailDto;
 
 import java.util.ArrayList;
 import java.util.Collections;

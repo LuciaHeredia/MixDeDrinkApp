@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.dtos.CocktailDto;
 import com.example.mixdedrink.data.remote.response.CocktailSearch;
 import com.example.mixdedrink.utils.Constants;
 
@@ -80,7 +80,7 @@ public class CocktailApiClient {
                 }
 
                 if(response.code() == 200) {
-                    List<CocktailDto> cocktailDtoList = new ArrayList<>(((CocktailSearch)response.body()).getCocktailDtoList());
+                    List<CocktailDto> cocktailDtoList = new ArrayList<>(response.body().getCocktailDtoList());
                     mCocktails.postValue(cocktailDtoList);
                 } else {
                     String error = response.errorBody().string();

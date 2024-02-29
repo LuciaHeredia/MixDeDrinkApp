@@ -2,7 +2,7 @@ package com.example.mixdedrink.data.remote.repositories;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.mixdedrink.data.remote.modelsDto.CocktailDto;
+import com.example.mixdedrink.data.remote.dtos.CocktailDto;
 import com.example.mixdedrink.data.remote.request.CocktailApiClient;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.mixdedrink.data.remote.modelsDto;
+package com.example.mixdedrink.data.remote.dtos;
 
 import android.os.Parcel;
 import android.os.Parcelable;
