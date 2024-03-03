@@ -5,9 +5,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -36,6 +36,8 @@ import retrofit2.Response;
 public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
     private CocktailListViewModel cocktailListViewModel;
+    private List<CocktailDto> allCocktails = new ArrayList<>();
+    private List<CocktailDto> filteredCocktails = new ArrayList<>();
     private CocktailAdapter adapter;
 
     @Override
@@ -47,19 +49,15 @@ public class SearchFragment extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
         dropDownSetUp();
         recyclerViewSetup();
-        GetRetrofitResponse();
+        dataSetup();
         listenerSetup();
         return binding.getRoot();
-    }
-
-    private void dropDownSetUp() {
-
     }
 
     private void disableOnBackBtn() {
@@ -72,12 +70,27 @@ public class SearchFragment extends Fragment {
         requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
+    private void dropDownSetUp() {
+        String[] s = getResources().getStringArray(R.array.search_by);
+        binding.dropDownInput.setText(s[0]); // Default: Cocktail
+    }
+
     private void recyclerViewSetup() {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setHasFixedSize(true);
         adapter = new CocktailAdapter();
         binding.recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(this::saveRecipeToSharedPref);
+    }
+
+    private void dataSetup() {
+        if(filteredCocktails.isEmpty()) {
+            GetRetrofitResponse();
+        } else {
+            adapter.setCocktails(filteredCocktails);
+            binding.recyclerView.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void saveRecipeToSharedPref(CocktailDto cocktail) {
@@ -106,9 +119,16 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
+            public boolean onQueryTextChange(String onTextChange) {
+                String dropDownSelected = binding.dropDownInput.getText().toString();
+                if(onTextChange.isEmpty()) {
+                    adapter.setCocktails(allCocktails);
+                } else {
+                    filterCocktails(dropDownSelected, onTextChange);
+                }
                 return false;
             }
+
         });
 
         /* Floating Icon - Random Cocktail */
@@ -117,6 +137,22 @@ public class SearchFragment extends Fragment {
                     .setAction("Action", null).show();
         });
 
+    }
+
+    private void filterCocktails(String dropDownSelected, String str) {
+        filteredCocktails.clear();
+        for(CocktailDto cocktailDto: allCocktails) {
+            if(dropDownSelected.equals("Cocktail")) {
+                if(cocktailDto.getStrDrink().toLowerCase().contains(str.toLowerCase())) {
+                    filteredCocktails.add(cocktailDto);
+                }
+            } else {
+                if(cocktailDto.getIsIngredientInside(str)) {
+                    filteredCocktails.add(cocktailDto);
+                }
+            }
+        }
+        adapter.setCocktails(filteredCocktails);
     }
 
     private void GetRetrofitResponse() {
@@ -128,11 +164,10 @@ public class SearchFragment extends Fragment {
 
         searchResponseCall.enqueue(new Callback<CocktailSearch>() {
             @Override
-            public void onResponse(Call<CocktailSearch> call, Response<CocktailSearch> response) {
-                if(response.code() == 200) {
-                    Log.v("Tag", "response: " + response.body().toString());
-                    List<CocktailDto> cocktailDtoList = new ArrayList<>(response.body().getCocktailDtoList());
-                    adapter.setCocktails(cocktailDtoList);
+            public void onResponse(@NonNull Call<CocktailSearch> call, @NonNull Response<CocktailSearch> response) {
+                if(response.code() == 200 && response.body()!=null) {
+                    allCocktails = response.body().getCocktailDtoList();
+                    adapter.setCocktails(allCocktails);
                     binding.recyclerView.setVisibility(View.VISIBLE);
                     binding.progressBar.setVisibility(View.INVISIBLE);
                 } else {

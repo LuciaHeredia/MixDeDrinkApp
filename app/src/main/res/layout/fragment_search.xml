@@ -13,22 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
         android:gravity="center">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/drop_down"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
             android:hint="@string/search_by_hint">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                android:id="@+id/tv_input"
+                android:id="@+id/drop_down_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="none"
                 app:simpleItems="@array/search_by"/>
 
         </com.google.android.material.textfield.TextInputLayout>

@@ -5,6 +5,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CocktailDto implements Parcelable {
     private String idDrink;
     private String strDrink;
@@ -36,6 +39,7 @@ public class CocktailDto implements Parcelable {
     private String strIngredient13 = null;
     private String strIngredient14 = null;
     private String strIngredient15 = null;
+    private List<String> allIngredients = new ArrayList<>();
     private String strMeasure1;
     private String strMeasure2;
     private String strMeasure3;
@@ -86,20 +90,35 @@ public class CocktailDto implements Parcelable {
         this.strInstructionsIT = strInstructionsIT;
         this.strDrinkThumb = strDrinkThumb;
         this.strIngredient1 = strIngredient1;
+        this.allIngredients.add(getStrIngredient1());
         this.strIngredient2 = strIngredient2;
+        this.allIngredients.add(getStrIngredient2());
         this.strIngredient3 = strIngredient3;
+        this.allIngredients.add(getStrIngredient3());
         this.strIngredient4 = strIngredient4;
+        this.allIngredients.add(getStrIngredient4());
         this.strIngredient5 = strIngredient5;
+        this.allIngredients.add(getStrIngredient5());
         this.strIngredient6 = strIngredient6;
+        this.allIngredients.add(getStrIngredient6());
         this.strIngredient7 = strIngredient7;
+        this.allIngredients.add(getStrIngredient7());
         this.strIngredient8 = strIngredient8;
+        this.allIngredients.add(getStrIngredient8());
         this.strIngredient9 = strIngredient9;
+        this.allIngredients.add(getStrIngredient9());
         this.strIngredient10 = strIngredient10;
+        this.allIngredients.add(getStrIngredient10());
         this.strIngredient11 = strIngredient11;
+        this.allIngredients.add(getStrIngredient11());
         this.strIngredient12 = strIngredient12;
+        this.allIngredients.add(getStrIngredient12());
         this.strIngredient13 = strIngredient13;
+        this.allIngredients.add(getStrIngredient13());
         this.strIngredient14 = strIngredient14;
+        this.allIngredients.add(getStrIngredient14());
         this.strIngredient15 = strIngredient15;
+        this.allIngredients.add(getStrIngredient15());
         this.strMeasure1 = strMeasure1;
         this.strMeasure2 = strMeasure2;
         this.strMeasure3 = strMeasure3;
@@ -238,6 +257,19 @@ public class CocktailDto implements Parcelable {
 
     public String getStrIngredient15() {
         return strIngredient15;
+    }
+
+    public List<String> getAllIngredients() {
+        return allIngredients;
+    }
+
+    public boolean getIsIngredientInside(String checkIngredient) {
+        for(String ingredient: getAllIngredients()) {
+            if(ingredient.equalsIgnoreCase(checkIngredient)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getStrMeasure1() {
