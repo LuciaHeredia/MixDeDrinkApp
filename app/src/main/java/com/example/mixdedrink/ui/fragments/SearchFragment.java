@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.view.MenuProvider;
@@ -65,6 +66,11 @@ public class SearchFragment extends Fragment {
         dataSetup();
         listenerSetup();
         return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     private void disableOnBackBtn() {
@@ -175,8 +181,8 @@ public class SearchFragment extends Fragment {
                 if(response.code() == 200 && response.body()!=null) {
                     allCocktails = response.body().getCocktailDtoList();
                     adapter.setCocktails(allCocktails);
-                    //binding.recyclerView.setVisibility(View.VISIBLE);
-                    //binding.progressBar.setVisibility(View.INVISIBLE);
+                    binding.recyclerView.setVisibility(View.VISIBLE);
+                    binding.progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     try {
                         Log.v("Tag", "Error: " + response.errorBody().string());
