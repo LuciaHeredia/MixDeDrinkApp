@@ -3,6 +3,8 @@ package com.example.mixdedrink.ui.fragments;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -45,6 +47,7 @@ public class SearchFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         disableOnBackBtn();
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -193,6 +196,13 @@ public class SearchFragment extends Fragment {
                 // observing for changes
             }
         });
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        MenuItem item=menu.findItem(R.id.searchFragment);
+        if(item!=null)
+            item.setVisible(false);
     }
 
     private void goToRecipe() {

@@ -8,7 +8,6 @@
         android:title="@string/action_search"
         android:icon="@drawable/ic_search"
         android:menuCategory="secondary"
-        android:visible="false"
         app:showAsAction="ifRoom" />
 
     <item
