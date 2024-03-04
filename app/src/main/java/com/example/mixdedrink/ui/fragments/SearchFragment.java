@@ -50,6 +50,7 @@ public class SearchFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
+        setHasOptionsMenu(true);
         disableOnBackBtn();
     }
 
@@ -60,7 +61,6 @@ public class SearchFragment extends Fragment {
         binding = FragmentSearchBinding.inflate(inflater, container, false);
         cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
         dropDownSetUp();
-        menuSetup();
         recyclerViewSetup();
         dataSetup();
         listenerSetup();
@@ -80,28 +80,6 @@ public class SearchFragment extends Fragment {
     private void dropDownSetUp() {
         String[] s = getResources().getStringArray(R.array.search_by);
         binding.dropDownInput.setText(s[0]); // Default: Cocktail
-    }
-
-    private void menuSetup() {
-        requireActivity().addMenuProvider(new MenuProvider() {
-            @Override
-            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                menuInflater.inflate(R.menu.menu_main, menu);
-
-                /* current icon tapped: Search */
-                MenuItem item = menu.findItem(R.id.searchFragment);
-                if(item!=null) {
-                    item.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_search_tapped, null));
-                    item.setEnabled(false);
-                }
-            }
-
-            @Override
-            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-                // Handle option Menu Here
-            }
-        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
     }
 
     private void recyclerViewSetup() {
@@ -227,6 +205,18 @@ public class SearchFragment extends Fragment {
     private void goToRecipe() {
         NavHostFragment.findNavController(SearchFragment.this)
                 .navigate(R.id.action_SearchFragment_to_RecipeFragment);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        /* current icon tapped: Search */
+        MenuItem item = menu.findItem(R.id.searchFragment);
+        if (item != null) {
+            item.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_search_tapped, null));
+            item.setEnabled(false);
+        }
     }
 
     @Override
