@@ -21,35 +21,31 @@ public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
 
     @Override
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+    }
+
+    @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
-        menuSetup();
         return binding.getRoot();
     }
 
-    private void menuSetup() {
-        requireActivity().addMenuProvider(new MenuProvider() {
-            @Override
-            public void onCreateMenu(@NonNull Menu menu, @NonNull MenuInflater menuInflater) {
-                menuInflater.inflate(R.menu.menu_main, menu);
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
 
-                /* current icon tapped: Favorites */
-                MenuItem item = menu.findItem(R.id.favoritesFragment);
-                if (item != null) {
-                    item.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_favorites_tapped, null));
-                    item.setEnabled(false);
-                }
-            }
-
-            @Override
-            public boolean onMenuItemSelected(@NonNull MenuItem menuItem) {
-                return false;
-                // Handle option Menu Here
-            }
-        }, getViewLifecycleOwner(), Lifecycle.State.RESUMED);
+        /* current icon tapped: Favorites */
+        MenuItem item = menu.findItem(R.id.favoritesFragment);
+        if (item != null) {
+            item.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_favorites_tapped, null));
+            item.setEnabled(false);
+        }
     }
 
     @Override
