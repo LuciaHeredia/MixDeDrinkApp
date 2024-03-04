@@ -15,7 +15,6 @@
         android:title="@string/action_favorites"
         android:icon="@drawable/ic_favorites"
         android:menuCategory="secondary"
-        android:visible="false"
         app:showAsAction="ifRoom" />
 
     <item
