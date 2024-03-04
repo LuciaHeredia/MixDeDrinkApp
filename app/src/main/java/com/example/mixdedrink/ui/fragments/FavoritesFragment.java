@@ -38,8 +38,10 @@ public class FavoritesFragment extends Fragment {
 
                 /* current icon tapped: Favorites */
                 MenuItem item = menu.findItem(R.id.favoritesFragment);
-                if(item!=null)
+                if (item != null) {
                     item.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_favorites_tapped, null));
+                    item.setEnabled(false);
+                }
             }
 
             @Override
