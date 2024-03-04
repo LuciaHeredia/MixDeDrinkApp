@@ -202,7 +202,7 @@ public class SearchFragment extends Fragment {
     public void onPrepareOptionsMenu(Menu menu) {
         MenuItem item=menu.findItem(R.id.searchFragment);
         if(item!=null)
-            item.setVisible(false);
+            item.setIcon(getResources().getDrawable(R.drawable.ic_search_tapped));
     }
 
     private void goToRecipe() {

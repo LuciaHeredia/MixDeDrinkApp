@@ -10,4 +10,5 @@
 
     <!-- App colors -->
     <color name="orange">#F97711</color>
+    <color name="grey">#696969</color>
 </resources>
