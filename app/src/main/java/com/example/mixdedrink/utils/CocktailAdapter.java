@@ -22,14 +22,14 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
 
     @NonNull
     @Override
-    public CocktailHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CocktailHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.cocktail_item, parent, false);
         return new CocktailHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CocktailHolder holder, int position) {
+    public void onBindViewHolder(CocktailHolder holder, int position) {
         CocktailDto currentCocktail = cocktails.get(position);
         holder.tv_drinkName.setText(currentCocktail.getStrDrink());
     }
@@ -40,7 +40,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
     }
 
     public void setCocktails(List<CocktailDto> cocktails) {
-        // sort contacts by first name in alphabetical order
+        // sort cocktails by name in alphabetical order
         Collections.sort(cocktails, new Comparator<CocktailDto>() {
             @Override
             public int compare(CocktailDto lhs, CocktailDto rhs) {

@@ -10,6 +10,7 @@
     <string name="desc_clear">clear</string>
     <string name="desc_random">random</string>
     <string name="search_by_hint">Search By:</string>
+    <string name="cocktail">Cocktail</string>
 
     <!-- Recipe Fragment -->
     <string name="recipe_fragment_label">Recipe</string>
