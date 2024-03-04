@@ -11,7 +11,7 @@
     <LinearLayout
         android:id="@+id/ll_search"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center">
 
@@ -19,12 +19,14 @@
             android:id="@+id/drop_down"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            app:boxCornerRadiusTopStart="0sp"
+            app:boxCornerRadiusTopEnd="0sp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:hint="@string/search_by_hint">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/drop_down_input"
-                android:layout_width="match_parent"
+                android:layout_width="145dp"
                 android:layout_height="match_parent"
                 app:simpleItems="@array/search_by"/>
 
@@ -32,7 +34,7 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             app:iconifiedByDefault="false"
             app:queryHint="Search"/>

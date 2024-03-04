@@ -90,8 +90,10 @@ public class SearchFragment extends Fragment {
 
                 /* current icon tapped: Search */
                 MenuItem item = menu.findItem(R.id.searchFragment);
-                if(item!=null)
+                if(item!=null) {
                     item.setIcon(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_search_tapped, null));
+                    item.setEnabled(false);
+                }
             }
 
             @Override
@@ -195,8 +197,8 @@ public class SearchFragment extends Fragment {
                 if(response.code() == 200 && response.body()!=null) {
                     allCocktails = response.body().getCocktailDtoList();
                     adapter.setCocktails(allCocktails);
-                    binding.recyclerView.setVisibility(View.VISIBLE);
-                    binding.progressBar.setVisibility(View.INVISIBLE);
+                    //binding.recyclerView.setVisibility(View.VISIBLE);
+                    //binding.progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     try {
                         Log.v("Tag", "Error: " + response.errorBody().string());
