@@ -35,7 +35,7 @@ public class RecipeFragment extends Fragment {
 
     private void listenerSetup() {
         /* floating icon setup */
-        binding.fab.setOnClickListener(view -> {
+        binding.favoriteBtn.setOnClickListener(view -> {
             Snackbar.make(view, "Add to Favorites", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             //binding.fab.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorites));
