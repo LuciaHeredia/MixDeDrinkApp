@@ -15,6 +15,7 @@
     <!-- Recipe Fragment -->
     <string name="recipe_fragment_label">Recipe</string>
     <string name="hello_recipe_fragment">Hello Recipe fragment</string>
+    <string name="instructions">Instructions:</string>
 
     <!-- Favorites Fragment -->
     <string name="favorites_fragment_label">Favorites</string>
