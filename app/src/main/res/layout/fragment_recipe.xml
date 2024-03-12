@@ -82,6 +82,22 @@
                 android:hint="hjkhhjkgjkghjkgkhhjvghkvghjv dfsdfxvsdf sdfsdf sdfsdf sdfasdfghjvghjvggj"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
+            <TextView
+                android:id="@+id/tv_ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tv_instructions_data"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="start"
+                android:text="@string/ingredients"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textStyle="bold" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
