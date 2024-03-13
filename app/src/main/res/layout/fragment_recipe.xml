@@ -79,7 +79,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:gravity="start"
-                android:hint="hjkhhjkgjkghjkgkhhjvghkvghjv dfsdfxvsdf sdfsdf sdfsdf sdfasdfghjvghjvggj"
+                android:hint="hjkhhjkgjkghjkgkhhjvghkvghjv dfsdfxvsdf hjkhhjkgjkghjkgkhhjvghkvghjv dfsdfxvsdf sdfsdf sdfsdf sdfasdfghjvghjvggj"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
             <TextView
