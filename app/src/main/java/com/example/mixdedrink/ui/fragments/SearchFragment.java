@@ -34,6 +34,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -156,10 +157,18 @@ public class SearchFragment extends Fragment {
 
         /* Floating Icon - Random Cocktail */
         binding.randomCocktail.setOnClickListener(view -> {
-            Snackbar.make(view, "Get Random Cocktail", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
+            getRandomCocktail();
         });
 
+    }
+
+    private void getRandomCocktail() {
+        int upperbound = allCocktails.size();
+        Random rand = new Random();
+        int randomIndexCocktail = rand.nextInt(upperbound);
+        Log.v("RAND", allCocktails.get(randomIndexCocktail).getStrDrink());
+        // TODO: send cocktail data to recipe fragment
+        goToRecipe();
     }
 
     private void filterCocktails(String dropDownSelected, String str) {
