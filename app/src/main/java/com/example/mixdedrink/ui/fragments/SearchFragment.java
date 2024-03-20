@@ -196,6 +196,10 @@ public class SearchFragment extends Fragment {
             public void onResponse(@NonNull Call<CocktailSearch> call, @NonNull Response<CocktailSearch> response) {
                 if(response.code() == 200 && response.body()!=null) {
                     allCocktails = response.body().getCocktailDtoList();
+                    for(CocktailDto c: allCocktails) {
+                        c.setAllIngredients();
+                        c.setAllMeasures();
+                    }
                     adapter.setCocktails(allCocktails);
                     binding.recyclerView.setVisibility(View.VISIBLE);
                     binding.progressBar.setVisibility(View.INVISIBLE);
