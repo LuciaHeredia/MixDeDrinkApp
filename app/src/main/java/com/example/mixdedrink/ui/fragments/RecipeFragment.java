@@ -2,6 +2,7 @@ package com.example.mixdedrink.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,9 @@ public class RecipeFragment extends Fragment {
         if (getArguments() != null) {
             CocktailDto cocktailDto = getArguments().getParcelable("myCocktail");
             binding.tvDrinkName.setText(cocktailDto.getStrDrink());
+            binding.tvCategoryData.setText(cocktailDto.getStrCategory());
+            binding.tvGlassData.setText(cocktailDto.getStrGlass());
+            binding.tvInstructionsData.setText(cocktailDto.getStrInstructions());
         }
 
     }

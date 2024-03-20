@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">MixDeDrink</string>
+    <string name="default_str">null</string>
 
     <!-- Search Fragment -->
     <string name="search_fragment_label">Search</string>
-    <string name="hello_search_fragment">Hello Search fragment</string>
     <string name="action_search">Search</string>
     <string name="next">Next</string>
     <string name="desc_search">search</string>
@@ -14,9 +14,10 @@
 
     <!-- Recipe Fragment -->
     <string name="recipe_fragment_label">Recipe</string>
-    <string name="hello_recipe_fragment">Hello Recipe fragment</string>
+    <string name="category">Category:</string>
     <string name="instructions">Instructions:</string>
     <string name="ingredients">Ingredients:</string>
+    <string name="glass">Glass:</string>
 
     <!-- Favorites Fragment -->
     <string name="favorites_fragment_label">Favorites</string>
@@ -25,7 +26,6 @@
 
     <!-- About Fragment -->
     <string name="about_fragment_label">About</string>
-    <string name="hello_about_fragment">Hello About fragment</string>
     <string name="action_about">About</string>
 
     <!-- Help Fragment -->
