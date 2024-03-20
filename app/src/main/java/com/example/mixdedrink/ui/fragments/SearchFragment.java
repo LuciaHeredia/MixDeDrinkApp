@@ -130,8 +130,13 @@ public class SearchFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 String dropDownSelected = binding.dropDownInput.getText().toString();
-                binding.dropDown.setErrorEnabled(false);
-                filterCocktails(dropDownSelected, query);
+                if(binding.dropDownInput.getText().toString().isEmpty()) {
+                    binding.dropDown.setErrorEnabled(true);
+                    binding.dropDown.setError("select from list");
+                } else {
+                    binding.dropDown.setErrorEnabled(false);
+                    filterCocktails(dropDownSelected, query);
+                }
                 return false;
             }
 

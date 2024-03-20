@@ -40,7 +40,11 @@ public class IngredientMeasureAdapter extends RecyclerView.Adapter<IngredientMea
         List<String> all = new ArrayList<>();
         for(int i=0; i<ingredients.size(); i++) {
             if(ingredients.get(i)!=null) {
-                all.add(ingredients.get(i)+" - "+measures.get(i));
+                String s = ingredients.get(i);
+                if(measures.get(i)!=null) {
+                    s +=" - "+measures.get(i);
+                }
+                all.add(s);
             }
         }
 
