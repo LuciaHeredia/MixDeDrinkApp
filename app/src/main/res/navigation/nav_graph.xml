@@ -14,17 +14,23 @@
 
         <action
             android:id="@+id/action_SearchFragment_to_RecipeFragment"
-            app:destination="@id/recipeFragment" />
+            app:destination="@id/recipeFragment">
+            <argument
+                android:name="myCocktail"
+                app:argType="com.example.mixdedrink.data.remote.dtos.CocktailDto" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/recipeFragment"
         android:name="com.example.mixdedrink.ui.fragments.RecipeFragment"
         android:label="@string/recipe_fragment_label"
         tools:layout="@layout/fragment_recipe">
-
         <action
             android:id="@+id/action_RecipeFragment_to_SearchFragment"
             app:destination="@id/searchFragment" />
+        <argument
+            android:name="myCocktail"
+            app:argType="com.example.mixdedrink.data.remote.dtos.CocktailDto" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"
