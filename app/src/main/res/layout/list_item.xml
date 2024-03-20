@@ -6,6 +6,7 @@
     android:padding="16dp"
     android:ellipsize="end"
     android:maxLines="1"
+    android:id="@+id/tv_item"
     android:textAppearance="?attr/textAppearanceSubtitle1">
 
 </TextView>
