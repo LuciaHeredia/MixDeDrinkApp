@@ -9,25 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CocktailDto implements Parcelable {
-    private String idDrink;
-    private String strDrink;
+    private final String strDrink;
     private String strDrinkAlternate = null;
-    private String strTags;
+    private String strTags = null;
     private String strVideo = null;
-    private String strCategory;
-    private String strIBA;
-    private String strAlcoholic;
-    private String strGlass;
-    private String strInstructions;
+    private final String strCategory;
+    private final String strGlass;
+    private final String strInstructions;
     private String strInstructionsES = null;
-    private String strInstructionsDE;
+    private String strInstructionsDE = null;
     private String strInstructionsFR = null;
-    private String strInstructionsIT;
-    private String strDrinkThumb;
-    private String strIngredient1;
-    private String strIngredient2;
-    private String strIngredient3;
-    private String strIngredient4;
+    private String strInstructionsIT = null;
+    private String strDrinkThumb = null;
+    private String strIngredient1 = null;
+    private String strIngredient2 = null;
+    private String strIngredient3 = null;
+    private String strIngredient4 = null;
     private String strIngredient5 = null;
     private String strIngredient6 = null;
     private String strIngredient7 = null;
@@ -40,9 +37,9 @@ public class CocktailDto implements Parcelable {
     private String strIngredient14 = null;
     private String strIngredient15 = null;
     private List<String> allIngredients = new ArrayList<>();
-    private String strMeasure1;
-    private String strMeasure2;
-    private String strMeasure3;
+    private String strMeasure1 = null;
+    private String strMeasure2 = null;
+    private String strMeasure3 = null;
     private String strMeasure4 = null;
     private String strMeasure5 = null;
     private String strMeasure6 = null;
@@ -55,12 +52,11 @@ public class CocktailDto implements Parcelable {
     private String strMeasure13 = null;
     private String strMeasure14 = null;
     private String strMeasure15 = null;
-    private String strImageSource;
+    private List<String> allMeasures = new ArrayList<>();
 
     //* Constructor //
-    public CocktailDto(String idDrink, String strDrink, String strDrinkAlternate,
-                       String strTags, String strVideo, String strCategory,
-                       String strIBA, String strAlcoholic, String strGlass,
+    public CocktailDto(String strDrink, String strDrinkAlternate,
+                       String strTags, String strVideo, String strCategory, String strGlass,
                        String strInstructions, String strInstructionsES, String strInstructionsDE,
                        String strInstructionsFR, String strInstructionsIT, String strDrinkThumb,
                        String strIngredient1, String strIngredient2, String strIngredient3,
@@ -72,16 +68,12 @@ public class CocktailDto implements Parcelable {
                        String strMeasure4, String strMeasure5, String strMeasure6,
                        String strMeasure7, String strMeasure8, String strMeasure9,
                        String strMeasure10, String strMeasure11, String strMeasure12,
-                       String strMeasure13, String strMeasure14, String strMeasure15,
-                       String strImageSource) {
-        this.idDrink = idDrink;
+                       String strMeasure13, String strMeasure14, String strMeasure15) {
         this.strDrink = strDrink;
         this.strDrinkAlternate = strDrinkAlternate;
         this.strTags = strTags;
         this.strVideo = strVideo;
         this.strCategory = strCategory;
-        this.strIBA = strIBA;
-        this.strAlcoholic = strAlcoholic;
         this.strGlass = strGlass;
         this.strInstructions = strInstructions;
         this.strInstructionsES = strInstructionsES;
@@ -90,35 +82,20 @@ public class CocktailDto implements Parcelable {
         this.strInstructionsIT = strInstructionsIT;
         this.strDrinkThumb = strDrinkThumb;
         this.strIngredient1 = strIngredient1;
-        this.allIngredients.add(getStrIngredient1());
         this.strIngredient2 = strIngredient2;
-        this.allIngredients.add(getStrIngredient2());
         this.strIngredient3 = strIngredient3;
-        this.allIngredients.add(getStrIngredient3());
         this.strIngredient4 = strIngredient4;
-        this.allIngredients.add(getStrIngredient4());
         this.strIngredient5 = strIngredient5;
-        this.allIngredients.add(getStrIngredient5());
         this.strIngredient6 = strIngredient6;
-        this.allIngredients.add(getStrIngredient6());
         this.strIngredient7 = strIngredient7;
-        this.allIngredients.add(getStrIngredient7());
         this.strIngredient8 = strIngredient8;
-        this.allIngredients.add(getStrIngredient8());
         this.strIngredient9 = strIngredient9;
-        this.allIngredients.add(getStrIngredient9());
         this.strIngredient10 = strIngredient10;
-        this.allIngredients.add(getStrIngredient10());
         this.strIngredient11 = strIngredient11;
-        this.allIngredients.add(getStrIngredient11());
         this.strIngredient12 = strIngredient12;
-        this.allIngredients.add(getStrIngredient12());
         this.strIngredient13 = strIngredient13;
-        this.allIngredients.add(getStrIngredient13());
         this.strIngredient14 = strIngredient14;
-        this.allIngredients.add(getStrIngredient14());
         this.strIngredient15 = strIngredient15;
-        this.allIngredients.add(getStrIngredient15());
         this.strMeasure1 = strMeasure1;
         this.strMeasure2 = strMeasure2;
         this.strMeasure3 = strMeasure3;
@@ -134,14 +111,51 @@ public class CocktailDto implements Parcelable {
         this.strMeasure13 = strMeasure13;
         this.strMeasure14 = strMeasure14;
         this.strMeasure15 = strMeasure15;
-        this.strImageSource = strImageSource;
+    }
+
+    //* Setter Methods *//
+
+    public void setAllIngredients() {
+        List<String> allIngredients = new ArrayList<>();
+        allIngredients.add(getStrIngredient1());
+        allIngredients.add(getStrIngredient2());
+        allIngredients.add(getStrIngredient3());
+        allIngredients.add(getStrIngredient4());
+        allIngredients.add(getStrIngredient5());
+        allIngredients.add(getStrIngredient6());
+        allIngredients.add(getStrIngredient7());
+        allIngredients.add(getStrIngredient8());
+        allIngredients.add(getStrIngredient9());
+        allIngredients.add(getStrIngredient10());
+        allIngredients.add(getStrIngredient11());
+        allIngredients.add(getStrIngredient12());
+        allIngredients.add(getStrIngredient13());
+        allIngredients.add(getStrIngredient14());
+        allIngredients.add(getStrIngredient15());
+        this.allIngredients = allIngredients;
+    }
+
+    public void setAllMeasures() {
+        List<String> allMeasures = new ArrayList<>();
+        allMeasures.add(getStrMeasure1());
+        allMeasures.add(getStrMeasure2());
+        allMeasures.add(getStrMeasure3());
+        allMeasures.add(getStrMeasure4());
+        allMeasures.add(getStrMeasure5());
+        allMeasures.add(getStrMeasure6());
+        allMeasures.add(getStrMeasure7());
+        allMeasures.add(getStrMeasure8());
+        allMeasures.add(getStrMeasure9());
+        allMeasures.add(getStrMeasure10());
+        allMeasures.add(getStrMeasure11());
+        allMeasures.add(getStrMeasure12());
+        allMeasures.add(getStrMeasure13());
+        allMeasures.add(getStrMeasure14());
+        allMeasures.add(getStrMeasure15());
+        this.allMeasures = allMeasures;
     }
 
     //* Getter Methods *//
-
-    public String getIdDrink() {
-        return idDrink;
-    }
 
     public String getStrDrink() {
         return strDrink;
@@ -161,14 +175,6 @@ public class CocktailDto implements Parcelable {
 
     public String getStrCategory() {
         return strCategory;
-    }
-
-    public String getStrIBA() {
-        return strIBA;
-    }
-
-    public String getStrAlcoholic() {
-        return strAlcoholic;
     }
 
     public String getStrGlass() {
@@ -263,9 +269,13 @@ public class CocktailDto implements Parcelable {
         return allIngredients;
     }
 
+    public List<String> getAllMeasures() {
+        return allMeasures;
+    }
+
     public boolean getIsIngredientInside(String checkIngredient) {
         for(String ingredient: getAllIngredients()) {
-            if(ingredient.equalsIgnoreCase(checkIngredient)) {
+            if(ingredient.toLowerCase().contains(checkIngredient.toLowerCase())) {
                 return true;
             }
         }
@@ -332,20 +342,12 @@ public class CocktailDto implements Parcelable {
         return strMeasure15;
     }
 
-    public String getStrImageSource() {
-        return strImageSource;
-    }
-
-
     protected CocktailDto(Parcel in) {
-        idDrink = in.readString();
         strDrink = in.readString();
         strDrinkAlternate = in.readString();
         strTags = in.readString();
         strVideo = in.readString();
         strCategory = in.readString();
-        strIBA = in.readString();
-        strAlcoholic = in.readString();
         strGlass = in.readString();
         strInstructions = in.readString();
         strInstructionsES = in.readString();
@@ -383,7 +385,6 @@ public class CocktailDto implements Parcelable {
         strMeasure13 = in.readString();
         strMeasure14 = in.readString();
         strMeasure15 = in.readString();
-        strImageSource = in.readString();
     }
 
     public static final Creator<CocktailDto> CREATOR = new Creator<CocktailDto>() {
@@ -405,14 +406,11 @@ public class CocktailDto implements Parcelable {
 
     @Override
     public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeString(idDrink);
         parcel.writeString(strDrink);
         parcel.writeString(strDrinkAlternate);
         parcel.writeString(strTags);
         parcel.writeString(strVideo);
         parcel.writeString(strCategory);
-        parcel.writeString(strIBA);
-        parcel.writeString(strAlcoholic);
         parcel.writeString(strGlass);
         parcel.writeString(strInstructions);
         parcel.writeString(strInstructionsES);
@@ -450,7 +448,6 @@ public class CocktailDto implements Parcelable {
         parcel.writeString(strMeasure13);
         parcel.writeString(strMeasure14);
         parcel.writeString(strMeasure15);
-        parcel.writeString(strImageSource);
     }
 
 }
