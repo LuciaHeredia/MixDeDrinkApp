@@ -30,7 +30,6 @@ import com.example.mixdedrink.databinding.FragmentSearchBinding;
 import com.example.mixdedrink.presentation.CocktailListViewModel;
 import com.example.mixdedrink.utils.CocktailAdapter;
 import com.example.mixdedrink.utils.Constants;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +94,7 @@ public class SearchFragment extends Fragment {
         binding.recyclerView.setHasFixedSize(true);
         adapter = new CocktailAdapter();
         binding.recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(this::saveRecipeToSharedPref);
+        adapter.setOnItemClickListener(this::sendCocktailData);
     }
 
     private void dataSetup() {
@@ -108,8 +107,8 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    private void saveRecipeToSharedPref(CocktailDto cocktail) {
-        goToRecipe();
+    private void sendCocktailData(CocktailDto cocktail) {
+        goToRecipe(cocktail);
     }
 
     private void listenerSetup() {
@@ -166,9 +165,7 @@ public class SearchFragment extends Fragment {
         int upperbound = allCocktails.size();
         Random rand = new Random();
         int randomIndexCocktail = rand.nextInt(upperbound);
-        Log.v("RAND", allCocktails.get(randomIndexCocktail).getStrDrink());
-        // TODO: send cocktail data to recipe fragment
-        goToRecipe();
+        goToRecipe(allCocktails.get(randomIndexCocktail));
     }
 
     private void filterCocktails(String dropDownSelected, String str) {
@@ -227,9 +224,11 @@ public class SearchFragment extends Fragment {
         });
     }
 
-    private void goToRecipe() {
+    private void goToRecipe(CocktailDto cocktailDto) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("myCocktail", cocktailDto);
         NavHostFragment.findNavController(SearchFragment.this)
-                .navigate(R.id.action_SearchFragment_to_RecipeFragment);
+                .navigate(R.id.action_SearchFragment_to_RecipeFragment, bundle);
     }
 
     @Override
