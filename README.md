@@ -1,4 +1,17 @@
 ## MixDeDrinkApp
-<img src = "README images/appicon.png" height="300"> <br/>
 Cocktail Recipes App. <br/>
-Data by: [thecocktaildb](https://www.thecocktaildb.com/api.php) <br/>
+<img src = "README images/appicon.png" height="300"> <br/>
+
+## Includes
+* Main Activity with Fragments, Binding, Navigation graph <br/>
+* RecyclerView <br/>
+* Menu <br/>
+* Images: Url load by: [Picasso](https://square.github.io/picasso) <br/>
+* Data base: Retrofit Rest API by: [thecocktaildb](https://www.thecocktaildb.com/api.php) <br/>
+* Design pattern: MVVM <br/>
+
+## Created with:
+* Language: Java
+* Android Studio: 2022.1.1 Patch 2.
+* SDK min version: 23
+* SDK target version: 33
