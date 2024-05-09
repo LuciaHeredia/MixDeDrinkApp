@@ -30,6 +30,7 @@ import com.example.mixdedrink.databinding.FragmentSearchBinding;
 import com.example.mixdedrink.presentation.CocktailListViewModel;
 import com.example.mixdedrink.utils.CocktailAdapter;
 import com.example.mixdedrink.utils.Constants;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,6 +162,8 @@ public class SearchFragment extends Fragment {
 
         /* Floating Icon - Random Cocktail */
         binding.randomCocktail.setOnClickListener(view -> {
+            Snackbar.make(view, "Random Cocktail", Snackbar.ANIMATION_MODE_SLIDE)
+                    .setAction("Action", null).show();
             getRandomCocktail();
         });
 
