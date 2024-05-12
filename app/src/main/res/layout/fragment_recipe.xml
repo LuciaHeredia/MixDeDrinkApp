@@ -21,9 +21,13 @@
         app:layout_constraintVertical_bias="0.642"
         tools:layout_editor_absoluteX="9dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/favoriteBtn"
@@ -175,10 +179,11 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_ingredients"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -198,6 +203,7 @@
             </FrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
