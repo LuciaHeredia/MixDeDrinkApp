@@ -9,16 +9,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
-import androidx.core.view.MenuProvider;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import com.example.mixdedrink.R;
+import com.example.mixdedrink.data.remote.dtos.CocktailDto;
 import com.example.mixdedrink.databinding.FragmentFavoritesBinding;
+import com.example.mixdedrink.utils.CocktailAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
+    private List<CocktailDto> allCocktails = new ArrayList<>();
+    private CocktailAdapter adapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -33,7 +40,27 @@ public class FavoritesFragment extends Fragment {
             Bundle savedInstanceState) {
 
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
+        recyclerViewSetup();
         return binding.getRoot();
+    }
+
+    private void recyclerViewSetup() {
+        binding.recyclerViewFav.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerViewFav.setHasFixedSize(true);
+        adapter = new CocktailAdapter();
+        binding.recyclerViewFav.setAdapter(adapter);
+        adapter.setOnItemClickListener(this::sendCocktailData);
+    }
+
+    private void sendCocktailData(CocktailDto cocktail) {
+        goToRecipe(cocktail);
+    }
+
+    private void goToRecipe(CocktailDto cocktailDto) {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("myCocktail", cocktailDto);
+        NavHostFragment.findNavController(FavoritesFragment.this)
+                .navigate(R.id.action_favoritesFragment_to_recipeFragment, bundle);
     }
 
     @Override
