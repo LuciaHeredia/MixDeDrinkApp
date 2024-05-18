@@ -9,19 +9,19 @@ import com.example.mixdedrink.data.local.daos.FavoriteDao;
 import com.example.mixdedrink.data.models.Cocktail;
 
 @Database(entities = {Cocktail.class}, version = 1)
-public abstract class FavoritesDatabase extends RoomDatabase {
+public abstract class FavoriteDatabase extends RoomDatabase {
 
     public abstract FavoriteDao favoriteDao();
 
     // Singleton
-    private static FavoritesDatabase instance;
+    private static FavoriteDatabase instance;
 
     // synchronized -> only one thread at a time
-    public static synchronized FavoritesDatabase getInstance(Context context) {
+    public static synchronized FavoriteDatabase getInstance(Context context) {
         if(instance == null) {
             // creating new app database
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                            FavoritesDatabase.class, "favorites_database")
+                            FavoriteDatabase.class, "favorites_database")
                     .fallbackToDestructiveMigration()
                     .build();
         }

@@ -22,7 +22,7 @@ public interface FavoriteDao {
     @Update
     void updateFavorite(Cocktail favorite);
 
-    @Query("SELECT * FROM favorites_table")
+    @Query("SELECT * FROM favorite_table")
     LiveData<List<Cocktail>> getAllFavorites();
 
 }

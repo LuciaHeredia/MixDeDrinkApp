@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
 
 import com.example.mixdedrink.data.local.daos.FavoriteDao;
-import com.example.mixdedrink.data.local.database.FavoritesDatabase;
+import com.example.mixdedrink.data.local.database.FavoriteDatabase;
 import com.example.mixdedrink.data.models.Cocktail;
 
 import java.util.List;
@@ -17,9 +17,9 @@ public class FavoriteRepository {
 
     public FavoriteRepository(Application application) {
         // db call
-        FavoritesDatabase favoritesDatabase = FavoritesDatabase.getInstance(application);
+        FavoriteDatabase favoriteDatabase = FavoriteDatabase.getInstance(application);
         // db access with dao
-        favoriteDao = favoritesDatabase.favoriteDao();
+        favoriteDao = favoriteDatabase.favoriteDao();
         // db data
         allFavorites = favoriteDao.getAllFavorites();
     }

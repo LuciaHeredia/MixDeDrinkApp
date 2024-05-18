@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity(tableName = "favorites_table")
+@Entity(tableName = "favorite_table")
 public class Cocktail implements Parcelable {
     @PrimaryKey()
     private String idDrink;
