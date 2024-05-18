@@ -28,8 +28,8 @@ public class FavoriteRepository {
         new InsertFavoriteAsyncTask(favoriteDao).execute(favorite);
     }
 
-    public void updateFavorite(Cocktail favorite){
-        new UpdateFavoriteAsyncTask(favoriteDao).execute(favorite);
+    public void deleteFavorite(Cocktail favorite){
+        new DeleteFavoriteAsyncTask(favoriteDao).execute(favorite);
     }
 
     public LiveData<List<Cocktail>> getAllFavorites(){
@@ -53,16 +53,16 @@ public class FavoriteRepository {
         }
     }
 
-    private static class UpdateFavoriteAsyncTask extends AsyncTask<Cocktail, Void, Void> {
+    private static class DeleteFavoriteAsyncTask extends AsyncTask<Cocktail, Void, Void> {
         private FavoriteDao favoriteDao;
 
-        private UpdateFavoriteAsyncTask(FavoriteDao favoriteDao) {
+        private DeleteFavoriteAsyncTask(FavoriteDao favoriteDao) {
             this.favoriteDao = favoriteDao;
         }
 
         @Override
         protected Void doInBackground(Cocktail... cocktails) {
-            favoriteDao.updateFavorite(cocktails[0]);
+            favoriteDao.deleteFavorite(cocktails[0]);
             return null;
         }
     }

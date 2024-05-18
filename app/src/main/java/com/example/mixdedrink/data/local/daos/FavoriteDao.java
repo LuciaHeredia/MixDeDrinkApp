@@ -2,6 +2,7 @@ package com.example.mixdedrink.data.local.daos;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Transaction;
@@ -19,8 +20,8 @@ public interface FavoriteDao {
     void insertFavorite(Cocktail favorite);
 
     @Transaction
-    @Update
-    void updateFavorite(Cocktail favorite);
+    @Delete
+    void deleteFavorite(Cocktail favorite);
 
     @Query("SELECT * FROM favorite_table")
     LiveData<List<Cocktail>> getAllFavorites();
