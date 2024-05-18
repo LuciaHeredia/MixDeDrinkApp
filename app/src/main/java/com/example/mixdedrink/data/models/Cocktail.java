@@ -14,6 +14,7 @@ import java.util.List;
 @Entity(tableName = "favorite_table")
 public class Cocktail implements Parcelable {
     @PrimaryKey()
+    @NonNull
     private String idDrink;
     private final String strDrink;
     private String strDrinkAlternate = null;

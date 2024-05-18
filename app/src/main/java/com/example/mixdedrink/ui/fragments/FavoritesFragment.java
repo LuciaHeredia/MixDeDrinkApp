@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.mixdedrink.R;
 import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.databinding.FragmentFavoritesBinding;
+import com.example.mixdedrink.presentation.FavoriteViewModel;
 import com.example.mixdedrink.utils.CocktailAdapter;
 
 import java.util.ArrayList;
@@ -41,6 +43,7 @@ public class FavoritesFragment extends Fragment {
 
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         recyclerViewSetup();
+        initFavoritesFromDb();
         return binding.getRoot();
     }
 
@@ -50,6 +53,15 @@ public class FavoritesFragment extends Fragment {
         adapter = new CocktailAdapter();
         binding.recyclerViewFav.setAdapter(adapter);
         adapter.setOnItemClickListener(this::sendCocktailData);
+    }
+
+    private void initFavoritesFromDb() {
+        FavoriteViewModel favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
+        favoriteViewModel.getAllFavorites().observe(this, favorites -> {
+            adapter.setCocktails(favorites);
+            binding.recyclerViewFav.setVisibility(View.VISIBLE);
+            binding.progressBar.setVisibility(View.INVISIBLE);
+        });
     }
 
     private void sendCocktailData(Cocktail cocktail) {
