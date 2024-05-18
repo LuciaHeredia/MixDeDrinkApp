@@ -26,11 +26,12 @@ public class FavoriteViewModel extends AndroidViewModel {
         favoriteRepository.insertFavorite(favorite);
     }
 
-    public void updateFavorite(Cocktail favorite) {
+    public void deleteFavorite(Cocktail favorite) {
         favoriteRepository.deleteFavorite(favorite);
     }
 
     public LiveData<List<Cocktail>> getAllFavorites() {
         return allFavorites;
     }
+
 }

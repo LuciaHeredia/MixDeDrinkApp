@@ -36,8 +36,7 @@
             android:contentDescription="@string/favorites_fragment_label"
             app:elevation="9dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favorites_add" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_drink_name"

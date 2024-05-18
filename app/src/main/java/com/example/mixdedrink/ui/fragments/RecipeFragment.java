@@ -1,6 +1,5 @@
 package com.example.mixdedrink.ui.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,15 +22,9 @@ import com.squareup.picasso.Picasso;
 public class RecipeFragment extends Fragment {
     private FragmentRecipeBinding binding;
     private Cocktail currentCocktail;
-    private Context context;
     private IngredientMeasureAdapter adapter;
     private FavoriteViewModel favoriteViewModel;
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        this.context = context;
-    }
+    private boolean isCurrentFavorite;
 
     @Override
     public View onCreateView(
@@ -40,13 +33,13 @@ public class RecipeFragment extends Fragment {
 
         binding = FragmentRecipeBinding.inflate(inflater, container, false);
         favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
-        recyclerViewSetup();
+        recyclerViewIngredientsSetup();
         recipeSetUp();
         listenerSetup();
         return binding.getRoot();
     }
 
-    private void recyclerViewSetup() {
+    private void recyclerViewIngredientsSetup() {
         binding.rvIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvIngredients.setHasFixedSize(true);
         adapter = new IngredientMeasureAdapter();
@@ -56,10 +49,29 @@ public class RecipeFragment extends Fragment {
     private void recipeSetUp(){
         if (getArguments() != null) {
             currentCocktail = getArguments().getParcelable("myCocktail");
+            isFavorite(currentCocktail.getIdDrink());
             dataSetUp();
             imageSetUp(currentCocktail.getStrDrinkThumb());
             ingredientsSetUp();
         }
+    }
+
+    private void isFavorite(String idDrink) {
+        favoriteViewModel.getAllFavorites().observe(this, dbFavorites -> {
+            isCurrentFavorite = false;
+            for(Cocktail c: dbFavorites) {
+                if (c.getIdDrink().equals(idDrink)) {
+                    isCurrentFavorite = true;
+                    break;
+                }
+            }
+
+            if(isCurrentFavorite) {
+                binding.favoriteBtn.setImageResource(R.drawable.ic_favorites_remove);
+            } else {
+                binding.favoriteBtn.setImageResource(R.drawable.ic_favorites_add);
+            }
+        });
     }
 
     private void dataSetUp() {
@@ -85,17 +97,26 @@ public class RecipeFragment extends Fragment {
     }
 
     private void listenerSetup() {
-        /* floating icon setup */
+        /* Floating Icon - Favorite */
         binding.favoriteBtn.setOnClickListener(view -> {
-            Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show();
-            saveAsFavoriteInDb();
+            if(isCurrentFavorite) {
+                deleteAsFavoriteFromDb(view);
+            } else {
+                saveAsFavoriteInDb(view);
+            }
         });
     }
 
-    private void saveAsFavoriteInDb() {
+    private void deleteAsFavoriteFromDb(View view) {
+        Snackbar.make(view, "Deleted from Favorites", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
+        favoriteViewModel.deleteFavorite(currentCocktail);
+    }
+
+    private void saveAsFavoriteInDb(View view) {
+        Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_SHORT)
+                .setAction("Action", null).show();
         favoriteViewModel.insertFavorite(currentCocktail);
-        binding.favoriteBtn.setImageResource(R.drawable.ic_favorites_remove);
     }
 
     @Override
