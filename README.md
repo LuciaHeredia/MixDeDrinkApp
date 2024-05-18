@@ -7,7 +7,8 @@ Cocktail Recipes App. <br/>
 * RecyclerView <br/>
 * Menu <br/>
 * Images: Url load by: [Picasso](https://square.github.io/picasso) <br/>
-* Data base: Retrofit Rest API by: [thecocktaildb](https://www.thecocktaildb.com/api.php) <br/>
+* Remote Data base: Retrofit Rest API by: [thecocktaildb](https://www.thecocktaildb.com/api.php) <br/>
+* Local Data base: ROOM(LiveData) <br/>
 * Design pattern: MVVM <br/>
 
 ## Created with:
