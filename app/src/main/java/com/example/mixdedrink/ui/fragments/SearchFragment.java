@@ -113,18 +113,6 @@ public class SearchFragment extends Fragment {
     }
 
     private void listenerSetup() {
-        //binding.buttonFirst.setOnClickListener(view -> GetRetrofitResponse());
-
-        /*binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // hide Toolbar when entering fragment
-                ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
-
-                NavHostFragment.findNavController(SearchFragment.this)
-                        .navigate(R.id.action_SearchFragment_to_RecipeFragment);
-            }
-        });*/
 
         /* Search View */
         binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -221,8 +209,7 @@ public class SearchFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<CocktailSearch> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<CocktailSearch> call, @NonNull Throwable t) {
             }
         });
     }
