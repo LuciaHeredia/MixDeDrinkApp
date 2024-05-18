@@ -14,19 +14,14 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-
 import com.example.mixdedrink.R;
 import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.databinding.FragmentFavoritesBinding;
 import com.example.mixdedrink.presentation.FavoriteViewModel;
 import com.example.mixdedrink.utils.CocktailAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
-    private List<Cocktail> allCocktails = new ArrayList<>();
     private CocktailAdapter adapter;
 
     @Override

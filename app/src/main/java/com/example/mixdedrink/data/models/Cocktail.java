@@ -15,56 +15,56 @@ import java.util.List;
 public class Cocktail implements Parcelable {
     @PrimaryKey()
     @NonNull
-    private String idDrink;
+    private final String idDrink;
     private final String strDrink;
-    private String strDrinkAlternate = null;
-    private String strTags = null;
-    private String strVideo = null;
+    private final String strDrinkAlternate;
+    private final String strTags;
+    private final String strVideo;
     private final String strCategory;
     private final String strGlass;
     private final String strInstructions;
-    private String strInstructionsES = null;
-    private String strInstructionsDE = null;
-    private String strInstructionsFR = null;
-    private String strInstructionsIT = null;
-    private String strDrinkThumb = null;
-    private String strIngredient1 = null;
-    private String strIngredient2 = null;
-    private String strIngredient3 = null;
-    private String strIngredient4 = null;
-    private String strIngredient5 = null;
-    private String strIngredient6 = null;
-    private String strIngredient7 = null;
-    private String strIngredient8 = null;
-    private String strIngredient9 = null;
-    private String strIngredient10 = null;
-    private String strIngredient11 = null;
-    private String strIngredient12 = null;
-    private String strIngredient13 = null;
-    private String strIngredient14 = null;
-    private String strIngredient15 = null;
+    private final String strInstructionsES;
+    private final String strInstructionsDE;
+    private final String strInstructionsFR;
+    private final String strInstructionsIT;
+    private final String strDrinkThumb;
+    private final String strIngredient1;
+    private final String strIngredient2;
+    private final String strIngredient3;
+    private final String strIngredient4;
+    private final String strIngredient5;
+    private final String strIngredient6;
+    private final String strIngredient7;
+    private final String strIngredient8;
+    private final String strIngredient9;
+    private final String strIngredient10;
+    private final String strIngredient11;
+    private final String strIngredient12;
+    private final String strIngredient13;
+    private final String strIngredient14;
+    private final String strIngredient15;
     @Ignore
     private List<String> allIngredients = new ArrayList<>();
-    private String strMeasure1 = null;
-    private String strMeasure2 = null;
-    private String strMeasure3 = null;
-    private String strMeasure4 = null;
-    private String strMeasure5 = null;
-    private String strMeasure6 = null;
-    private String strMeasure7 = null;
-    private String strMeasure8 = null;
-    private String strMeasure9 = null;
-    private String strMeasure10 = null;
-    private String strMeasure11 = null;
-    private String strMeasure12 = null;
-    private String strMeasure13 = null;
-    private String strMeasure14 = null;
-    private String strMeasure15 = null;
+    private final String strMeasure1;
+    private final String strMeasure2;
+    private final String strMeasure3;
+    private final String strMeasure4;
+    private final String strMeasure5;
+    private final String strMeasure6;
+    private final String strMeasure7;
+    private final String strMeasure8;
+    private final String strMeasure9;
+    private final String strMeasure10;
+    private final String strMeasure11;
+    private final String strMeasure12;
+    private final String strMeasure13;
+    private final String strMeasure14;
+    private final String strMeasure15;
     @Ignore
     private List<String> allMeasures = new ArrayList<>();
 
     //* Constructor //
-    public Cocktail(String idDrink, String strDrink, String strDrinkAlternate,
+    public Cocktail(@NonNull String idDrink, String strDrink, String strDrinkAlternate,
                     String strTags, String strVideo, String strCategory, String strGlass,
                     String strInstructions, String strInstructionsES, String strInstructionsDE,
                     String strInstructionsFR, String strInstructionsIT, String strDrinkThumb,
@@ -167,6 +167,7 @@ public class Cocktail implements Parcelable {
 
     //* Getter Methods *//
 
+    @NonNull
     public String getIdDrink() {
         return idDrink;
     }
@@ -357,6 +358,7 @@ public class Cocktail implements Parcelable {
     }
 
     protected Cocktail(Parcel in) {
+        idDrink = in.readString();
         strDrink = in.readString();
         strDrinkAlternate = in.readString();
         strTags = in.readString();

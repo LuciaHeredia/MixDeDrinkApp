@@ -10,7 +10,7 @@ import java.util.List;
 public class CocktailRepository {
 
     private static CocktailRepository instance;
-    private CocktailApiClient cocktailApiClient;
+    private final CocktailApiClient cocktailApiClient;
 
     // Singleton
     public static CocktailRepository getInstance(){

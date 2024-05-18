@@ -12,8 +12,8 @@ import com.example.mixdedrink.data.models.Cocktail;
 import java.util.List;
 
 public class FavoriteRepository {
-    private FavoriteDao favoriteDao;
-    private LiveData<List<Cocktail>> allFavorites;
+    private final FavoriteDao favoriteDao;
+    private final LiveData<List<Cocktail>> allFavorites;
 
     public FavoriteRepository(Application application) {
         // db call
@@ -40,7 +40,7 @@ public class FavoriteRepository {
     ////////////////////////// AsyncTasks //////////////////////////
 
     private static class InsertFavoriteAsyncTask extends AsyncTask<Cocktail, Void, Void> {
-        private FavoriteDao favoriteDao;
+        private final FavoriteDao favoriteDao;
 
         private InsertFavoriteAsyncTask(FavoriteDao favoriteDao) {
             this.favoriteDao = favoriteDao;
@@ -54,7 +54,7 @@ public class FavoriteRepository {
     }
 
     private static class DeleteFavoriteAsyncTask extends AsyncTask<Cocktail, Void, Void> {
-        private FavoriteDao favoriteDao;
+        private final FavoriteDao favoriteDao;
 
         private DeleteFavoriteAsyncTask(FavoriteDao favoriteDao) {
             this.favoriteDao = favoriteDao;

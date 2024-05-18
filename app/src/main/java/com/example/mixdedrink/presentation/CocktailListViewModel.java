@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CocktailListViewModel extends ViewModel {
 
-    private CocktailRepository cocktailRepository;
+    private final CocktailRepository cocktailRepository;
 
     // Constructor
     public CocktailListViewModel() {

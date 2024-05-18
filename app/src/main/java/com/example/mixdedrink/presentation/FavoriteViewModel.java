@@ -13,8 +13,8 @@ import java.util.List;
 
 public class FavoriteViewModel extends AndroidViewModel {
 
-    private FavoriteRepository favoriteRepository;
-    private LiveData<List<Cocktail>> allFavorites;
+    private final FavoriteRepository favoriteRepository;
+    private final LiveData<List<Cocktail>> allFavorites;
 
     public FavoriteViewModel(@NonNull Application application) {
         super(application);

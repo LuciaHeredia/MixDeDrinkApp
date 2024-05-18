@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class CocktailApiClient {
 
     //LiveData
-    private MutableLiveData<List<Cocktail>> mCocktails;
+    private final MutableLiveData<List<Cocktail>> mCocktails;
 
     private RetrieveCocktailsRunnable retrieveCocktailsRunnable;
 
@@ -62,7 +62,7 @@ public class CocktailApiClient {
     // retrieve data from RestAPI by runnable class
     private class RetrieveCocktailsRunnable implements Runnable{
 
-        private String query;
+        private final String query;
         boolean cancelRequest;
 
         public RetrieveCocktailsRunnable(String query) {
