@@ -74,6 +74,11 @@ public class RecipeFragment extends Fragment {
     }
 
     private void ingredientsSetUp() {
+        if(currentCocktail.getAllIngredients().isEmpty()) {
+            // Recipe from DB
+            currentCocktail.setAllIngredients();
+            currentCocktail.setAllMeasures();
+        }
         adapter.setIngredientsMeasures(currentCocktail.getAllIngredients(), currentCocktail.getAllMeasures());
         binding.rvIngredients.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.INVISIBLE);
