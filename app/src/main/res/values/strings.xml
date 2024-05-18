@@ -33,4 +33,7 @@
     <string name="hello_help_fragment">Hello Help fragment</string>
     <string name="action_help">Help</string>
 
+    <!-- Settings Fragment -->
+    <string name="action_settings">Settings</string>
+
 </resources>

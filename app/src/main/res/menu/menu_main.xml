@@ -21,6 +21,14 @@
         android:id="@+id/helpFragment"
         android:title="@string/action_help"
         android:menuCategory="secondary"
+        android:visible="false"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/settingsFragment"
+        android:title="@string/action_settings"
+        android:menuCategory="secondary"
+        android:visible="false"
         app:showAsAction="never" />
 
     <item
