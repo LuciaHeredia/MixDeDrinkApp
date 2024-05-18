@@ -9,19 +9,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mixdedrink.R;
 import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.databinding.FragmentRecipeBinding;
+import com.example.mixdedrink.presentation.FavoriteViewModel;
 import com.example.mixdedrink.utils.IngredientMeasureAdapter;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 public class RecipeFragment extends Fragment {
     private FragmentRecipeBinding binding;
+    private Cocktail currentCocktail;
     private Context context;
     private IngredientMeasureAdapter adapter;
+    private FavoriteViewModel favoriteViewModel;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -35,6 +39,7 @@ public class RecipeFragment extends Fragment {
             Bundle savedInstanceState) {
 
         binding = FragmentRecipeBinding.inflate(inflater, container, false);
+        favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
         recyclerViewSetup();
         recipeSetUp();
         listenerSetup();
@@ -50,26 +55,26 @@ public class RecipeFragment extends Fragment {
 
     private void recipeSetUp(){
         if (getArguments() != null) {
-            Cocktail cocktail = getArguments().getParcelable("myCocktail");
-            dataSetUp(cocktail);
-            imageSetUp(cocktail.getStrDrinkThumb());
-            ingredientsSetUp(cocktail);
+            currentCocktail = getArguments().getParcelable("myCocktail");
+            dataSetUp();
+            imageSetUp(currentCocktail.getStrDrinkThumb());
+            ingredientsSetUp();
         }
     }
 
-    private void dataSetUp(Cocktail cocktail) {
-        binding.tvDrinkName.setText(cocktail.getStrDrink());
-        binding.tvCategoryData.setText(cocktail.getStrCategory());
-        binding.tvGlassData.setText(cocktail.getStrGlass());
-        binding.tvInstructionsData.setText(cocktail.getStrInstructions());
+    private void dataSetUp() {
+        binding.tvDrinkName.setText(currentCocktail.getStrDrink());
+        binding.tvCategoryData.setText(currentCocktail.getStrCategory());
+        binding.tvGlassData.setText(currentCocktail.getStrGlass());
+        binding.tvInstructionsData.setText(currentCocktail.getStrInstructions());
     }
 
     private void imageSetUp(String url){
         Picasso.get().load(url).placeholder(R.drawable.loading).error(R.drawable.no_pic).into(binding.imageDrink);
     }
 
-    private void ingredientsSetUp(Cocktail cocktail) {
-        adapter.setIngredientsMeasures(cocktail.getAllIngredients(), cocktail.getAllMeasures());
+    private void ingredientsSetUp() {
+        adapter.setIngredientsMeasures(currentCocktail.getAllIngredients(), currentCocktail.getAllMeasures());
         binding.rvIngredients.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.INVISIBLE);
     }
@@ -77,12 +82,16 @@ public class RecipeFragment extends Fragment {
     private void listenerSetup() {
         /* floating icon setup */
         binding.favoriteBtn.setOnClickListener(view -> {
-            Snackbar.make(view, "Add to Favorites", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, "Added to Favorites", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            //binding.fab.setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.ic_favorites));
+            saveAsFavoriteInDb();
         });
     }
 
+    private void saveAsFavoriteInDb() {
+        favoriteViewModel.insertFavorite(currentCocktail);
+        binding.favoriteBtn.setImageResource(R.drawable.ic_favorites_remove);
+    }
 
     @Override
     public void onStop() {

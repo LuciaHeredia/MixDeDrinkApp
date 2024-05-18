@@ -37,7 +37,7 @@
             app:elevation="9dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favorites_empty" />
+            app:srcCompat="@drawable/ic_favorites_add" />
 
         <TextView
             android:id="@+id/tv_drink_name"
