@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_favoritesFragment_to_recipeFragment"
             app:destination="@id/recipeFragment" />
+        <argument
+            android:name="myCocktail"
+            app:argType="com.example.mixdedrink.data.models.Cocktail" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
