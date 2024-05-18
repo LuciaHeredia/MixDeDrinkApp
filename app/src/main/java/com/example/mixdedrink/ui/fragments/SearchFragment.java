@@ -161,19 +161,19 @@ public class SearchFragment extends Fragment {
         });
 
         /* Floating Icon - Random Cocktail */
-        binding.randomCocktail.setOnClickListener(view -> {
-            Snackbar.make(view, "Random Cocktail", Snackbar.ANIMATION_MODE_SLIDE)
-                    .setAction("Action", null).show();
-            getRandomCocktail();
-        });
+        binding.randomCocktail.setOnClickListener(this::getRandomCocktail);
 
     }
 
-    private void getRandomCocktail() {
+    private void getRandomCocktail(View view) {
         int upperbound = allCocktails.size();
-        Random rand = new Random();
-        int randomIndexCocktail = rand.nextInt(upperbound);
-        goToRecipe(allCocktails.get(randomIndexCocktail));
+        if(upperbound>0) { // Cocktails list exist
+            Snackbar.make(view, "Random Cocktail", Snackbar.ANIMATION_MODE_SLIDE)
+                    .setAction("Action", null).show();
+            Random rand = new Random();
+            int randomIndexCocktail = rand.nextInt(upperbound);
+            goToRecipe(allCocktails.get(randomIndexCocktail));
+        }
     }
 
     private void filterCocktails(String dropDownSelected, String str) {
