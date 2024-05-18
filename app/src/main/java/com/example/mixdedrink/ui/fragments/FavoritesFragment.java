@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 
 import com.example.mixdedrink.R;
-import com.example.mixdedrink.data.remote.dtos.CocktailDto;
+import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.databinding.FragmentFavoritesBinding;
 import com.example.mixdedrink.utils.CocktailAdapter;
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class FavoritesFragment extends Fragment {
     private FragmentFavoritesBinding binding;
-    private List<CocktailDto> allCocktails = new ArrayList<>();
+    private List<Cocktail> allCocktails = new ArrayList<>();
     private CocktailAdapter adapter;
 
     @Override
@@ -52,13 +52,13 @@ public class FavoritesFragment extends Fragment {
         adapter.setOnItemClickListener(this::sendCocktailData);
     }
 
-    private void sendCocktailData(CocktailDto cocktail) {
+    private void sendCocktailData(Cocktail cocktail) {
         goToRecipe(cocktail);
     }
 
-    private void goToRecipe(CocktailDto cocktailDto) {
+    private void goToRecipe(Cocktail cocktail) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("myCocktail", cocktailDto);
+        bundle.putParcelable("myCocktail", cocktail);
         NavHostFragment.findNavController(FavoritesFragment.this)
                 .navigate(R.id.action_favoritesFragment_to_recipeFragment, bundle);
     }

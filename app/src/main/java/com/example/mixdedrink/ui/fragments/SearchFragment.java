@@ -22,7 +22,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mixdedrink.R;
-import com.example.mixdedrink.data.remote.dtos.CocktailDto;
+import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.data.remote.Api;
 import com.example.mixdedrink.data.remote.request.ServiceRequest;
 import com.example.mixdedrink.data.remote.response.CocktailSearch;
@@ -43,8 +43,8 @@ import retrofit2.Response;
 public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
     private CocktailListViewModel cocktailListViewModel;
-    private List<CocktailDto> allCocktails = new ArrayList<>();
-    private List<CocktailDto> filteredCocktails = new ArrayList<>();
+    private List<Cocktail> allCocktails = new ArrayList<>();
+    private List<Cocktail> filteredCocktails = new ArrayList<>();
     private CocktailAdapter adapter;
 
     @Override
@@ -108,7 +108,7 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    private void sendCocktailData(CocktailDto cocktail) {
+    private void sendCocktailData(Cocktail cocktail) {
         goToRecipe(cocktail);
     }
 
@@ -178,14 +178,14 @@ public class SearchFragment extends Fragment {
 
     private void filterCocktails(String dropDownSelected, String str) {
         filteredCocktails.clear();
-        for(CocktailDto cocktailDto: allCocktails) {
+        for(Cocktail cocktail : allCocktails) {
             if(dropDownSelected.equals("Cocktail")) {
-                if(cocktailDto.getStrDrink().toLowerCase().contains(str.toLowerCase())) {
-                    filteredCocktails.add(cocktailDto);
+                if(cocktail.getStrDrink().toLowerCase().contains(str.toLowerCase())) {
+                    filteredCocktails.add(cocktail);
                 }
             } else {
-                if(cocktailDto.getIsIngredientInside(str)) {
-                    filteredCocktails.add(cocktailDto);
+                if(cocktail.getIsIngredientInside(str)) {
+                    filteredCocktails.add(cocktail);
                 }
             }
         }
@@ -204,7 +204,7 @@ public class SearchFragment extends Fragment {
             public void onResponse(@NonNull Call<CocktailSearch> call, @NonNull Response<CocktailSearch> response) {
                 if(response.code() == 200 && response.body()!=null) {
                     allCocktails = response.body().getCocktailDtoList();
-                    for(CocktailDto c: allCocktails) {
+                    for(Cocktail c: allCocktails) {
                         c.setAllIngredients();
                         c.setAllMeasures();
                     }
@@ -228,17 +228,17 @@ public class SearchFragment extends Fragment {
     }
 
     private void ObserveAnyChange() {
-        cocktailListViewModel.getCocktails().observe(this, new Observer<List<CocktailDto>>() {
+        cocktailListViewModel.getCocktails().observe(this, new Observer<List<Cocktail>>() {
             @Override
-            public void onChanged(List<CocktailDto> cocktails) {
+            public void onChanged(List<Cocktail> cocktails) {
                 // observing for changes
             }
         });
     }
 
-    private void goToRecipe(CocktailDto cocktailDto) {
+    private void goToRecipe(Cocktail cocktail) {
         Bundle bundle = new Bundle();
-        bundle.putParcelable("myCocktail", cocktailDto);
+        bundle.putParcelable("myCocktail", cocktail);
         NavHostFragment.findNavController(SearchFragment.this)
                 .navigate(R.id.action_SearchFragment_to_RecipeFragment, bundle);
     }

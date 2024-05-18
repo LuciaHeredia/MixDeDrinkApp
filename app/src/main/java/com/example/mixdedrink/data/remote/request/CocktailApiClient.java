@@ -5,7 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.mixdedrink.data.remote.dtos.CocktailDto;
+import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.data.remote.response.CocktailSearch;
 import com.example.mixdedrink.utils.Constants;
 
@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class CocktailApiClient {
 
     //LiveData
-    private MutableLiveData<List<CocktailDto>> mCocktails;
+    private MutableLiveData<List<Cocktail>> mCocktails;
 
     private RetrieveCocktailsRunnable retrieveCocktailsRunnable;
 
@@ -38,7 +38,7 @@ public class CocktailApiClient {
         mCocktails = new MutableLiveData();
     }
 
-    public LiveData<List<CocktailDto>> getCocktails() {
+    public LiveData<List<Cocktail>> getCocktails() {
         return mCocktails;
     }
 
@@ -80,8 +80,8 @@ public class CocktailApiClient {
                 }
 
                 if(response.code() == 200) {
-                    List<CocktailDto> cocktailDtoList = new ArrayList<>(response.body().getCocktailDtoList());
-                    mCocktails.postValue(cocktailDtoList);
+                    List<Cocktail> cocktailList = new ArrayList<>(response.body().getCocktailDtoList());
+                    mCocktails.postValue(cocktailList);
                 } else {
                     String error = response.errorBody().string();
                     Log.v("Tag", "Error: " + error);

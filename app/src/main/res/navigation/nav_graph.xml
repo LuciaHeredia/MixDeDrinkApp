@@ -17,7 +17,7 @@
             app:destination="@id/recipeFragment">
             <argument
                 android:name="myCocktail"
-                app:argType="com.example.mixdedrink.data.remote.dtos.CocktailDto" />
+                app:argType="com.example.mixdedrink.data.models.Cocktail" />
         </action>
     </fragment>
     <fragment
@@ -30,7 +30,7 @@
             app:destination="@id/searchFragment" />
         <argument
             android:name="myCocktail"
-            app:argType="com.example.mixdedrink.data.remote.dtos.CocktailDto" />
+            app:argType="com.example.mixdedrink.data.models.Cocktail" />
     </fragment>
     <fragment
         android:id="@+id/favoritesFragment"

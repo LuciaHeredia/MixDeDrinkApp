@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mixdedrink.R;
-import com.example.mixdedrink.data.remote.dtos.CocktailDto;
+import com.example.mixdedrink.data.models.Cocktail;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.CocktailHolder> {
-    private List<CocktailDto> cocktails = new ArrayList<>();
+    private List<Cocktail> cocktails = new ArrayList<>();
     private OnItemClickListener listener;
 
     @NonNull
@@ -30,7 +30,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
 
     @Override
     public void onBindViewHolder(CocktailHolder holder, int position) {
-        CocktailDto currentCocktail = cocktails.get(position);
+        Cocktail currentCocktail = cocktails.get(position);
         holder.tv_drinkName.setText(currentCocktail.getStrDrink());
     }
 
@@ -39,11 +39,11 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
         return cocktails.size();
     }
 
-    public void setCocktails(List<CocktailDto> cocktails) {
+    public void setCocktails(List<Cocktail> cocktails) {
         // sort cocktails by name in alphabetical order
-        Collections.sort(cocktails, new Comparator<CocktailDto>() {
+        Collections.sort(cocktails, new Comparator<Cocktail>() {
             @Override
-            public int compare(CocktailDto lhs, CocktailDto rhs) {
+            public int compare(Cocktail lhs, Cocktail rhs) {
                 return lhs.getStrDrink().toLowerCase().compareTo(rhs.getStrDrink().toLowerCase());
             }
         });
@@ -69,7 +69,7 @@ public class CocktailAdapter extends RecyclerView.Adapter<CocktailAdapter.Cockta
     }
 
     public interface OnItemClickListener {
-        void onItemClick(CocktailDto cocktail);
+        void onItemClick(Cocktail cocktail);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mixdedrink.R;
-import com.example.mixdedrink.data.remote.dtos.CocktailDto;
+import com.example.mixdedrink.data.models.Cocktail;
 import com.example.mixdedrink.databinding.FragmentRecipeBinding;
 import com.example.mixdedrink.utils.IngredientMeasureAdapter;
 import com.google.android.material.snackbar.Snackbar;
@@ -50,26 +50,26 @@ public class RecipeFragment extends Fragment {
 
     private void recipeSetUp(){
         if (getArguments() != null) {
-            CocktailDto cocktailDto = getArguments().getParcelable("myCocktail");
-            dataSetUp(cocktailDto);
-            imageSetUp(cocktailDto.getStrDrinkThumb());
-            ingredientsSetUp(cocktailDto);
+            Cocktail cocktail = getArguments().getParcelable("myCocktail");
+            dataSetUp(cocktail);
+            imageSetUp(cocktail.getStrDrinkThumb());
+            ingredientsSetUp(cocktail);
         }
     }
 
-    private void dataSetUp(CocktailDto cocktailDto) {
-        binding.tvDrinkName.setText(cocktailDto.getStrDrink());
-        binding.tvCategoryData.setText(cocktailDto.getStrCategory());
-        binding.tvGlassData.setText(cocktailDto.getStrGlass());
-        binding.tvInstructionsData.setText(cocktailDto.getStrInstructions());
+    private void dataSetUp(Cocktail cocktail) {
+        binding.tvDrinkName.setText(cocktail.getStrDrink());
+        binding.tvCategoryData.setText(cocktail.getStrCategory());
+        binding.tvGlassData.setText(cocktail.getStrGlass());
+        binding.tvInstructionsData.setText(cocktail.getStrInstructions());
     }
 
     private void imageSetUp(String url){
         Picasso.get().load(url).placeholder(R.drawable.loading).error(R.drawable.no_pic).into(binding.imageDrink);
     }
 
-    private void ingredientsSetUp(CocktailDto cocktailDto) {
-        adapter.setIngredientsMeasures(cocktailDto.getAllIngredients(), cocktailDto.getAllMeasures());
+    private void ingredientsSetUp(Cocktail cocktail) {
+        adapter.setIngredientsMeasures(cocktail.getAllIngredients(), cocktail.getAllMeasures());
         binding.rvIngredients.setVisibility(View.VISIBLE);
         binding.progressBar.setVisibility(View.INVISIBLE);
     }
