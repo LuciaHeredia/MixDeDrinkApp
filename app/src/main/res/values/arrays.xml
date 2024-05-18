@@ -2,6 +2,6 @@
 <resources>
     <string-array name="search_by">
         <item>Cocktail</item>
-        <item>Ingredient</item>
-    </string-array>
-</resources>
+        <!-- <item>Ingredient</item> -->
+     </string-array>
+ </resources>
