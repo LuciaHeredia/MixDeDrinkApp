@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">MixDeDrink</string>
     <string name="default_str">null</string>
+    <string name="empty">Empty</string>
 
     <!-- Search Fragment -->
     <string name="search_fragment_label">Search</string>

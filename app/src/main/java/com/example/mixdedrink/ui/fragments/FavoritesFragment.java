@@ -56,6 +56,10 @@ public class FavoritesFragment extends Fragment {
             adapter.setCocktails(favorites);
             binding.recyclerViewFav.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.INVISIBLE);
+
+            if(favorites.isEmpty()) {
+                binding.txEmpty.setVisibility(View.VISIBLE);
+            }
         });
     }
 

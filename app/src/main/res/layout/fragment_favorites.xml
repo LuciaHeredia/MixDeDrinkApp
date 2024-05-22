@@ -13,6 +13,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+            android:id="@+id/tx_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/empty"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_gravity="center"
+            android:visibility="invisible"
+            android:gravity="center" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="match_parent"
