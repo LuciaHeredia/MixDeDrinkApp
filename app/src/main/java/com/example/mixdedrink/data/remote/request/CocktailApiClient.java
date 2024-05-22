@@ -48,10 +48,11 @@ public class CocktailApiClient {
             retrieveCocktailsRunnable = null;
         }
         retrieveCocktailsRunnable = new RetrieveCocktailsRunnable(query);
+
         final Future<?> myHandler = AppExecutors.getInstance().networkIO().submit(retrieveCocktailsRunnable);
 
         AppExecutors.getInstance().networkIO().schedule(() -> {
-            // canceling retrofit call after 5 seconds
+            // canceling retrofit call
             myHandler.cancel(true);
         }, 3000, TimeUnit.MILLISECONDS);
     }
@@ -83,7 +84,7 @@ public class CocktailApiClient {
                     List<Cocktail> cocktailList = new ArrayList<>(response.body().getCocktailDtoList());
                     mCocktails.postValue(cocktailList);
                 } else {
-                    String error = (response.errorBody()!=null) ? response.errorBody().string() : "";
+                    String error = (response.errorBody()!=null) ? response.errorBody().toString() : "";
                     Log.v("Tag", "Error: " + error);
                     mCocktails.postValue(null);
                     cancelRequest();
