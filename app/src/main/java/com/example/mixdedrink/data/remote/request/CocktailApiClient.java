@@ -86,11 +86,13 @@ public class CocktailApiClient {
                     String error = (response.errorBody()!=null) ? response.errorBody().string() : "";
                     Log.v("Tag", "Error: " + error);
                     mCocktails.postValue(null);
+                    cancelRequest();
                 }
 
             } catch (IOException e) {
                 mCocktails.postValue(null);
                 e.printStackTrace();
+                cancelRequest();
             }
 
         }
