@@ -38,7 +38,7 @@ public class FavoritesFragment extends Fragment {
 
         binding = FragmentFavoritesBinding.inflate(inflater, container, false);
         recyclerViewSetup();
-        initFavoritesFromDb();
+        roomDbObserverSetup();
         return binding.getRoot();
     }
 
@@ -50,7 +50,7 @@ public class FavoritesFragment extends Fragment {
         adapter.setOnItemClickListener(this::sendCocktailData);
     }
 
-    private void initFavoritesFromDb() {
+    private void roomDbObserverSetup() {
         FavoriteViewModel favoriteViewModel = new ViewModelProvider(this).get(FavoriteViewModel.class);
         favoriteViewModel.getAllFavorites().observe(this, favorites -> {
             adapter.setCocktails(favorites);
