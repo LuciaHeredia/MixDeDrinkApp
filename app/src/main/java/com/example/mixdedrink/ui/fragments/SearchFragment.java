@@ -214,5 +214,6 @@ public class SearchFragment extends Fragment {
     public void onResume() {
         super.onResume();
         dropDownSetUp();
+        dataSetup();
     }
 }
