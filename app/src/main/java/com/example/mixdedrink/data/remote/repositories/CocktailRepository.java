@@ -20,12 +20,17 @@ public class CocktailRepository {
         return instance;
     }
 
+    /* Constructor */
     private CocktailRepository() {
         cocktailApiClient = CocktailApiClient.getInstance();
     }
 
     public LiveData<List<Cocktail>> getCocktails() {
         return cocktailApiClient.getCocktails();
+    }
+
+    public void searchCocktailsApi(String query) {
+        cocktailApiClient.searchCocktailsApi(query);
     }
 
 }

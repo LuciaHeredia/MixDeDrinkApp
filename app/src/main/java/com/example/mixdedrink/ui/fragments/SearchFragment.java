@@ -1,7 +1,6 @@
 package com.example.mixdedrink.ui.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,33 +11,23 @@ import android.widget.ArrayAdapter;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.mixdedrink.R;
 import com.example.mixdedrink.data.models.Cocktail;
-import com.example.mixdedrink.data.remote.Api;
-import com.example.mixdedrink.data.remote.request.ServiceRequest;
-import com.example.mixdedrink.data.remote.response.CocktailSearch;
 import com.example.mixdedrink.databinding.FragmentSearchBinding;
 import com.example.mixdedrink.presentation.CocktailListViewModel;
 import com.example.mixdedrink.utils.CocktailAdapter;
-import com.example.mixdedrink.utils.Constants;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class SearchFragment extends Fragment {
     private FragmentSearchBinding binding;
@@ -63,14 +52,10 @@ public class SearchFragment extends Fragment {
         cocktailListViewModel = new ViewModelProvider(this).get(CocktailListViewModel.class);
         dropDownSetUp();
         recyclerViewSetup();
+        apiObserverSetup();
         dataSetup();
         listenerSetup();
         return binding.getRoot();
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
     }
 
     private void disableOnBackBtn() {
@@ -100,7 +85,7 @@ public class SearchFragment extends Fragment {
 
     private void dataSetup() {
         if(filteredCocktails.isEmpty()) {
-            GetRetrofitResponse();
+            getCocktailsFromApi();
         } else {
             adapter.setCocktails(filteredCocktails);
             binding.recyclerView.setVisibility(View.VISIBLE);
@@ -180,45 +165,22 @@ public class SearchFragment extends Fragment {
         adapter.setCocktails(filteredCocktails);
     }
 
-    private void GetRetrofitResponse() {
-        Api api = ServiceRequest.getApi();
-
-        // cocktails search
-        String cocktailName = "";
-        Call<CocktailSearch> searchResponseCall = api.searchCocktail(Constants.BASE_URL_SEARCH, cocktailName);
-
-        searchResponseCall.enqueue(new Callback<CocktailSearch>() {
-            @Override
-            public void onResponse(@NonNull Call<CocktailSearch> call, @NonNull Response<CocktailSearch> response) {
-                if(response.code() == 200 && response.body()!=null) {
-                    allCocktails = response.body().getCocktailDtoList();
-                    for(Cocktail c: allCocktails) {
-                        c.setAllIngredients();
-                        c.setAllMeasures();
-                    }
-                    adapter.setCocktails(allCocktails);
-                    binding.recyclerView.setVisibility(View.VISIBLE);
-                    binding.progressBar.setVisibility(View.INVISIBLE);
-                } else {
-                    try {
-                        Log.v("Tag", "Error: " + response.errorBody().string());
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<CocktailSearch> call, @NonNull Throwable t) {
-            }
-        });
+    private void getCocktailsFromApi() {
+        cocktailListViewModel.searchCocktailsApi("");
     }
 
-    private void ObserveAnyChange() {
-        cocktailListViewModel.getCocktails().observe(this, new Observer<List<Cocktail>>() {
-            @Override
-            public void onChanged(List<Cocktail> cocktails) {
-                // observing for changes
+    private void apiObserverSetup() {
+        cocktailListViewModel.getCocktails().observe(this, cocktails -> {
+            // observing for changes
+            if(cocktails != null) {
+                allCocktails = cocktails;
+                for(Cocktail c: allCocktails) {
+                    c.setAllIngredients();
+                    c.setAllMeasures();
+                }
+                adapter.setCocktails(allCocktails);
+                binding.recyclerView.setVisibility(View.VISIBLE);
+                binding.progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

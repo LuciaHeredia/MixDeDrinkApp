@@ -11,14 +11,18 @@ public class CocktailListViewModel extends ViewModel {
 
     private final CocktailRepository cocktailRepository;
 
-    // Constructor
+    /* Constructor */
     public CocktailListViewModel() {
         cocktailRepository = CocktailRepository.getInstance();
     }
 
-    // Getter
+    /* Getter */
     public LiveData<List<Cocktail>> getCocktails() {
         return cocktailRepository.getCocktails();
+    }
+
+    public void searchCocktailsApi(String query) {
+        cocktailRepository.searchCocktailsApi(query);
     }
 
 }

@@ -20,12 +20,10 @@ import retrofit2.Response;
 
 public class CocktailApiClient {
 
-    //LiveData
     private final MutableLiveData<List<Cocktail>> mCocktails;
-
     private RetrieveCocktailsRunnable retrieveCocktailsRunnable;
 
-    // Singleton
+    /* Singleton */
     private static CocktailApiClient instance;
     public static CocktailApiClient getInstance(){
         if(instance == null) {
@@ -34,10 +32,12 @@ public class CocktailApiClient {
         return instance;
     }
 
+    /* Constructor */
     private CocktailApiClient() {
-        mCocktails = new MutableLiveData();
+        mCocktails = new MutableLiveData<>();
     }
 
+    /* Getters */
     public LiveData<List<Cocktail>> getCocktails() {
         return mCocktails;
     }
@@ -48,23 +48,23 @@ public class CocktailApiClient {
             retrieveCocktailsRunnable = null;
         }
         retrieveCocktailsRunnable = new RetrieveCocktailsRunnable(query);
-        final Future myHandler = AppExecutors.getInstance().networkIO().submit(retrieveCocktailsRunnable);
+        final Future<?> myHandler = AppExecutors.getInstance().networkIO().submit(retrieveCocktailsRunnable);
 
-        AppExecutors.getInstance().networkIO().schedule(new Runnable() {
-            @Override
-            public void run() {
-                // canceling retrofit call after 5 seconds
-                myHandler.cancel(true);
-            }
-        }, 5000, TimeUnit.MICROSECONDS);
+        AppExecutors.getInstance().networkIO().schedule(() -> {
+            // canceling retrofit call after 5 seconds
+            myHandler.cancel(true);
+        }, 3000, TimeUnit.MILLISECONDS);
     }
 
-    // retrieve data from RestAPI by runnable class
+
+
+    /* Runnable class: retrieve data from RestAPI */
     private class RetrieveCocktailsRunnable implements Runnable{
 
         private final String query;
         boolean cancelRequest;
 
+        /* Constructor */
         public RetrieveCocktailsRunnable(String query) {
             this.query = query;
             cancelRequest = false;
@@ -79,11 +79,11 @@ public class CocktailApiClient {
                     return;
                 }
 
-                if(response.code() == 200) {
+                if(response.code() == 200 && response.body()!=null) {
                     List<Cocktail> cocktailList = new ArrayList<>(response.body().getCocktailDtoList());
                     mCocktails.postValue(cocktailList);
                 } else {
-                    String error = response.errorBody().string();
+                    String error = (response.errorBody()!=null) ? response.errorBody().string() : "";
                     Log.v("Tag", "Error: " + error);
                     mCocktails.postValue(null);
                 }
