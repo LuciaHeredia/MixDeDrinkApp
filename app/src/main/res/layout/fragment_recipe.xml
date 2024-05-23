@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/recipeFragment"
-    android:background="@color/orange"
     tools:context=".ui.fragments.RecipeFragment">
 
     <androidx.cardview.widget.CardView
