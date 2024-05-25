@@ -28,6 +28,9 @@
     <!-- About Fragment -->
     <string name="about_fragment_label">About</string>
     <string name="action_about">About</string>
+    <string name="data_by">Data by: www.thecocktaildb.com</string>
+    <string name="dev_by">©LuciaHeredia</string>
+    <string name="version">Version: 1.0.0</string>
 
     <!-- Help Fragment -->
     <string name="help_fragment_label">Help</string>
