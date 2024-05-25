@@ -290,8 +290,10 @@ public class Cocktail implements Parcelable {
 
     public boolean getIsIngredientInside(String checkIngredient) {
         for(String ingredient: getAllIngredients()) {
-            if(ingredient.toLowerCase().contains(checkIngredient.toLowerCase())) {
-                return true;
+            if(ingredient!=null) {
+                if (ingredient.toLowerCase().contains(checkIngredient.toLowerCase())) {
+                    return true;
+                }
             }
         }
         return false;
