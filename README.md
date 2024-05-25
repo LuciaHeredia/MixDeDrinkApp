@@ -31,6 +31,7 @@ Cocktail Recipes App. <br/>
 * Images: Url load by: [Picasso](https://square.github.io/picasso) <br/>
 * Remote Data base: Retrofit Rest API by: [thecocktaildb](https://www.thecocktaildb.com/api.php) <br/>
 * Local Data base: ROOM(LiveData) <br/>
+* Dark/Light Theme.
 * Design pattern: MVVM <br/>
 
 ## Created with:
